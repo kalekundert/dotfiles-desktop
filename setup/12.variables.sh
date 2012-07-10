@@ -1,4 +1,7 @@
-export PATH=~/hacking/scripts:~/hacking/installs/bin:~/.zsh/scripts:$PATH
+if [[ $PATH != *hacking/installs/bin* ]]; then
+    export PATH=~/hacking/scripts:~/hacking/installs/bin:~/.zsh/scripts:$PATH
+fi
+
 export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/firefox
 

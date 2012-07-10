@@ -83,10 +83,15 @@ alias pk='ping kxgames.net'
 
 alias ucsf-wpa='nmcli con up id "UCSF (secure)"'
 
-# Aliases muck around with the completion system.
-function evince () { fork evince $@ }
-function px () { python -c "print $1" }
+# Aliases muck around with the zsh completion system, and signle line function
+# muck around with bash.
+
+function evince () {
+    fork evince $@
+}
+
+function px () {
+    python -c "print $1"
+}
 
 alias px="noglob px"
-
-
