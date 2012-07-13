@@ -6,7 +6,8 @@ function ls () {
         --hide="*.log"                                                      \
         --hide="*.nlo"                                                      \
         --hide="*.bbl"                                                      \
-        --hide="*.blg"
+        --hide="*.blg"                                                      \
+        --hide="lost+found"
 }
 
 alias l='ls'
