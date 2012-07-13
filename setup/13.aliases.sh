@@ -24,6 +24,7 @@ alias lr='ls -R'
 alias cr='cp -r'
 
 alias zmv='noglob zmv -W'
+alias zrc='source ~/.zshrc'
 
 alias pu=pushd
 alias po=popd
