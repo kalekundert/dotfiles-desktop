@@ -1,9 +1,9 @@
 function ls () {
     /bin/ls -X --color $@                                                   \
+        --hide="*~"                                                         \
         --hide="*.pyc"                                                      \
         --hide="\#*\#"                                                      \
         --hide="*.aux"                                                      \
-        --hide="*.log"                                                      \
         --hide="*.nlo"                                                      \
         --hide="*.bbl"                                                      \
         --hide="*.blg"
@@ -23,6 +23,8 @@ alias lr='ls -R'
 alias cr='cp -r'
 
 alias zmv='noglob zmv -W'
+alias zcp='noglob zmv -W -p cp'
+alias zln='noglob zmv -W -p ln'
 alias zrc='source ~/.zshrc'
 
 alias pu=pushd
@@ -50,6 +52,11 @@ alias g=gvim
 alias givm=gvim
 
 alias wgs='sakura -e "watch git status"'
+
+function gs () {
+    test -d $1 && cd $1
+    git status
+}
 
 alias py=python
 alias ipy=ipython

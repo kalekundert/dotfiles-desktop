@@ -2,8 +2,8 @@ if [[ $PATH != *hacking/installs/bin* ]]; then
     export PATH=~/hacking/scripts:~/hacking/installs/bin:~/.zsh/scripts:$PATH
 fi
 
-export EDITOR=/usr/bin/vim
-export BROWSER=/usr/bin/firefox
+export EDITOR=vim
+export BROWSER=firefox
 
 export MAN_PATH=~/hacking/installs/man
 export LD_LIBRARY_PATH=~/research/sali/imp/debug/build/lib/
