@@ -61,8 +61,11 @@ alias gc='git commit'
 alias wgs='watch git status'
 
 function gs () {
-    test -d "$1" && cd $1
-    git status
+    if [ -d "$1" ]; then
+        cd $1; git status; cd ~- 
+    else
+        git status
+    fi
 }
 
 alias py=python
