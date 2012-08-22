@@ -6,7 +6,7 @@ if [[ $SHELL == *zsh* ]]; then
     # Enable extended globbing.
     setopt extended_glob
     setopt nohup
-    setopt auto_cd
+    setopt noautocd
 
     fpath=(~/.zsh/completions $fpath)
 

@@ -34,6 +34,9 @@ alias po=popd
 alias back='cd ~-'
 alias here='cd -P .'
 
+alias top='\top -u kale'
+alias topall='\top'
+
 alias xsu='exec su'
 alias simon-says='sudo'
 
@@ -52,10 +55,13 @@ alias v=gvim
 alias g=gvim
 alias givm=gvim
 
-alias wgs='sakura -e "watch git status"'
+alias ga='git add'
+alias gd='git diff'
+alias gc='git commit'
+alias wgs='watch git status'
 
 function gs () {
-    test -d $1 && cd $1
+    test -d "$1" && cd $1
     git status
 }
 
