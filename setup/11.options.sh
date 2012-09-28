@@ -1,4 +1,4 @@
-if [[ $SHELL == *zsh* ]]; then
+if [ $THIS_SHELL = zsh ]; then
 
     # Enable vim-like line editing.
     bindkey -v
@@ -23,7 +23,7 @@ if [[ $SHELL == *zsh* ]]; then
     zstyle ':completion:*:warnings' format 'No matches for: %d'
     zstyle ':completion:*' group-name
 
-elif [[ $SHELL == *bash* ]]; then
+elif [ $THIS_SHELL = bash ]; then
 
     # Enable vim-like line editing.
     set -o vi

@@ -16,7 +16,6 @@ alias sl='ls'
 alias ld='ls'
 alias ks='ls'
 alias sk='ls'
-
 alias la='ls -A'
 alias ll='ls -l'
 alias lr='ls -R'
@@ -54,10 +53,13 @@ alias vi=vim
 alias v=gvim
 alias g=gvim
 alias givm=gvim
+alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
 
 alias ga='git add'
 alias gd='git diff'
 alias gc='git commit'
+alias gp='git pull'
+alias gu='git push'
 alias wgs='watch git status'
 
 function gs () {
@@ -87,29 +89,33 @@ alias firefox='fork firefox'
 alias abiword='fork abiword'
 alias gimp='fork gimp'
 alias inkscape='fork inkscape'
+alias libreoffice='fork libreoffice'
 alias gtkpod='fork gtkpod'
 alias rhythmbox='fork rhythmbox'
 alias eog='fork eog'
 
-alias ssh-jacobsonlab='ssh jacobsonlab -t bin/zsh'
-alias ssh-jacobsonlab-proxy='autossh -fND 9050 jacobsonlab'
-alias ssh-francislab-proxy='ssh -fN francislab-proxy'
-alias ssh-mountainview-proxy='ssh -fN mountainview-proxy'
+alias ssh-kortemmelab-proxy='autossh -fND 9050 kortemmelab-proxy'
+alias ssh-mountainview-proxy='autossh -fND 9050 mountainview-proxy'
 
 alias pg='ping google.com'
 alias pk='ping kxgames.net'
 
 alias ucsf-wpa='nmcli con up id "UCSF (secure)"'
 
-# Aliases muck around with the zsh completion system, and signle line function
-# muck around with bash.
+# Aliases muck around with the zsh completion system, and single line 
+# functions muck around with bash.
 
 function evince () {
     fork evince $@
 }
 
 function px () {
+    python -c "$1"
+}
+
+function pxp () {
     python -c "print $1"
 }
 
 alias px="noglob px"
+alias pxp="noglob pxp"
