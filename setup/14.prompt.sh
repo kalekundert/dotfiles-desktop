@@ -49,16 +49,16 @@ USER=`whoami`
 HOST=`hostname`
 
 if [ $THIS_SHELL = zsh ]; then
-    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c] '
-    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %m: '
-    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c] %n: '
-    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %n@%m: '
+    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c]'
+    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %m:'
+    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c] %n:'
+    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %n@%m:'
 
 elif [ $THIS_SHELL = bash ]; then
-    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W] '
-    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[\W] \h: '
-    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W] \u: '
-    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[\W] \u@\h: '
+    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W]'
+    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[\W] \h:'
+    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W] \u:'
+    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[\W] \u@\h:'
 fi
 
 # Choose a color and a prompt string.  Both of these decisions depend on which
@@ -69,7 +69,7 @@ fi
 
 # Set the two variables that are used to display the prompt.
 
-PS1=$color$prompt$normal
+PS1="$color$prompt$normal "
 
 function precmd {
 
@@ -80,7 +80,7 @@ function precmd {
 
     local zero='%([BSUbfksu]|([FB]|){*})'
     length=${#${(S%%)PS1//$~zero/}} 
-    padding=${(l.(($length - 4)).. .)}'... '
+    padding=${(l.(($length - 4)).. .)}'...'
 
-    PS2=$color$padding$normal
+    PS2="$color$padding$normal "
 }
