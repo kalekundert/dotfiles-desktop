@@ -7,6 +7,7 @@ if [ $THIS_SHELL = zsh ]; then
 
     # Enable extended globbing.
     setopt extended_glob
+    setopt bare_glob_qual
     setopt nohup
     setopt noautocd
 
