@@ -1,13 +1,17 @@
 function ls () {
-    /bin/ls -X --color $@                                                   \
-        --hide="*~"                                                         \
-        --hide="*.pyc"                                                      \
-        --hide="\#*\#"                                                      \
-        --hide="*.aux"                                                      \
-        --hide="*.nlo"                                                      \
-        --hide="*.bbl"                                                      \
-        --hide="*.blg"                                                      \
-        --hide="lost+found"
+    if [ $# -eq 1 ] && [ -e '.lsrc' ]; then
+        source '.lsrc'
+    else
+        /bin/ls -X --color $@                                                   \
+            --hide="*~"                                                         \
+            --hide="*.pyc"                                                      \
+            --hide="\#*\#"                                                      \
+            --hide="*.aux"                                                      \
+            --hide="*.nlo"                                                      \
+            --hide="*.bbl"                                                      \
+            --hide="*.blg"                                                      \
+            --hide="lost+found"
+    fi
 }
 
 alias l='ls'
@@ -26,6 +30,7 @@ alias zmv='noglob zmv -W'
 alias zcp='noglob zmv -W -p cp'
 alias zln='noglob zmv -W -p ln'
 alias zrc='source ~/.zshrc'
+alias rc=zrc
 
 alias pu=pushd
 alias po=popd
@@ -60,6 +65,8 @@ alias gd='git diff'
 alias gc='git commit'
 alias gp='git pull'
 alias gu='git push'
+alias gb='git branch'
+alias gk='git checkout'
 alias wgs='watch git status'
 
 function gs () {
