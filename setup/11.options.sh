@@ -8,8 +8,7 @@ if [ $THIS_SHELL = zsh ]; then
     # Enable extended globbing.
     setopt extended_glob
     setopt bare_glob_qual
-    setopt nohup
-    setopt noautocd
+    setopt nohup            # This doesn't seem to work...
 
     fpath=(~/.zsh/completions $fpath)
 
@@ -19,7 +18,7 @@ if [ $THIS_SHELL = zsh ]; then
     autoload -U "~/.zsh/completions/*(:t)"
     autoload zmv
 
-    # These lines are supposed to make completion functions more verbose.
+    # These lines make tab-completion more verbose.
     zstyle ':completion:*' verbose yes
     zstyle ':completion:*:descriptions' format '%B%d%b'
     zstyle ':completion:*:messages' format '%d'

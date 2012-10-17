@@ -1,18 +1,48 @@
+# General Utilities {{{1
+# =================
+alias rc='source ~/.zshrc'
+alias quit='exit'
+alias xsu='exec su'
+alias simon-says='sudo'
+alias top='\top -u $USER'
+alias topall='\top'
+alias date='\date +"%A, %B %-d%n%-I:%M %p"'
+alias where='whereis'
+
+alias pu='pushd'
+alias po='popd'
+alias back='cd ~-'
+alias here='cd -P .'
+
+# In some directories, I like to have more control over what 'ls' displays.  
+# For example, sometimes I like to sort files alphabetically and sometimes I 
+# like to sort them by file extension.  
+#
+# To get this behavior, I have 'ls' look for an '.lsrc' file before executing.  
+# If such a file is found, then that file is executed in lieu of 'ls' itself.  
+# Otherwise, 'ls' is run.  By default, a few file extensions are ignored.
+#
+# This is still a pretty rough implementation.  It's easy to get around (i.e.  
+# by passing any arguments to 'ls') and the '.lsrc' files are hard to write.  I 
+# might have to write a more involved python script to get around these issues.
+
 function ls () {
     if [ $# -eq 1 ] && [ -e '.lsrc' ]; then
         source '.lsrc'
     else
-        /bin/ls -X --color $@                                                   \
-            --hide="*~"                                                         \
-            --hide="*.pyc"                                                      \
-            --hide="\#*\#"                                                      \
-            --hide="*.aux"                                                      \
-            --hide="*.nlo"                                                      \
-            --hide="*.bbl"                                                      \
-            --hide="*.blg"                                                      \
+        /bin/ls -X --color $@                                                 \
+            --hide="*~"                                                       \
+            --hide="*.pyc"                                                    \
+            --hide="\#*\#"                                                    \
+            --hide="*.aux"                                                    \
+            --hide="*.nlo"                                                    \
+            --hide="*.bbl"                                                    \
+            --hide="*.blg"                                                    \
             --hide="lost+found"
     fi
 }
+
+# There are a lot of ways that I tend to misspell 'ls'.
 
 alias l='ls'
 alias s='ls'
@@ -29,37 +59,24 @@ alias cr='cp -r'
 alias zmv='noglob zmv -W'
 alias zcp='noglob zmv -W -p cp'
 alias zln='noglob zmv -W -p ln'
-alias zrc='source ~/.zshrc'
-alias rc=zrc
 
-alias pu=pushd
-alias po=popd
-
-alias back='cd ~-'
-alias here='cd -P .'
-
-alias top='\top -u kale'
-alias topall='\top'
-
-alias xsu='exec su'
-alias simon-says='sudo'
-
-alias :w=true
-alias :q=true
-alias :wq=true
-
-alias quit=exit
-alias term=sakura
-alias where=whereis
-
-alias date='\date +"%A, %B %-d%n%-I:%M %p"'
-
-alias vi=vim
-alias v=gvim
-alias g=gvim
-alias givm=gvim
+# Vim {{{1
+# ===
+alias vi='vim'
+alias v='gvim'
+alias g='gvim'
+alias givm='gvim'
 alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
 
+# I have a tendency to accidentally type these vim commands into the shell, and 
+# I don't like seeing the "command not found" errors that result.
+
+alias :w='true'
+alias :q='true'
+alias :wq='true'
+
+# Git {{{1
+# ===
 alias ga='git add'
 alias gd='git diff'
 alias gc='git commit'
@@ -69,6 +86,8 @@ alias gb='git branch'
 alias gk='git checkout'
 alias wgs='watch git status'
 
+# Make 'git status' seem to understand a directory argument.
+
 function gs () {
     if [ -d "$1" ]; then
         cd $1; git status; cd ~- 
@@ -77,6 +96,8 @@ function gs () {
     fi
 }
 
+# Python {{{1
+# ======
 alias py=python
 alias ipy=ipython
 alias ism=isympy
@@ -84,13 +105,34 @@ alias ism=isympy
 alias python='python -W ignore'
 alias ipython='ipython --pylab'
 
-alias pymol='fork pymol -qx'
-alias pymol-tk='fork pymol -q'
+# Sometimes I want to run small snippets of python code without launching the 
+# entire interpreter.  Usually this is either to do a bit of arithmetic (pxp) 
+# or to get help on simple objects (pxh).
 
+function px () {
+    python -c "$*"
+}
+
+function pxp () {
+    python -c "print $*"
+}
+
+function pxh () {
+    python -c "help($1)"
+}
+
+alias px="noglob px"
+alias pxp="noglob pxp"
+alias pxh="noglob pxh"
+
+# Java {{{1
+# ====
 alias ja='java -ea'
 alias jc='javac -g'
 alias ju='java org.junit.runner.JUnitCore'
 
+# Other Applications {{{1
+# ==================
 alias sakura='fork sakura'
 alias firefox='fork firefox'
 alias abiword='fork abiword'
@@ -99,8 +141,28 @@ alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
 alias gtkpod='fork gtkpod'
 alias rhythmbox='fork rhythmbox'
+alias quodlibet='fork quodlibet'
+alias exfalso='fork exfalso'
 alias eog='fork eog'
 
+# The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
+# because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
+# that menu is desired.
+
+alias pymol='fork pymol -qx'
+alias pymol-tk='fork pymol -q'
+
+# The zsh completion system doesn't seem to work very well on aliases.  Since I 
+# have a custom completion script for evince, I had to write the 'fork' alias 
+# as a shell function instead.  (I would have written it as a one-liner, but 
+# that confuses bash.)
+
+function evince () {
+    fork evince $@
+}
+
+# SSH and Networking {{{1
+# ==================
 alias ssh-kortemmelab-proxy='autossh -fND 9050 kortemmelab-proxy'
 alias ssh-mountainview-proxy='autossh -fND 9050 mountainview-proxy'
 
@@ -109,20 +171,3 @@ alias pk='ping kxgames.net'
 
 alias ucsf-wpa='nmcli con up id "UCSF (secure)"'
 
-# Aliases muck around with the zsh completion system, and single line 
-# functions muck around with bash.
-
-function evince () {
-    fork evince $@
-}
-
-function px () {
-    python -c "$1"
-}
-
-function pxp () {
-    python -c "print $1"
-}
-
-alias px="noglob px"
-alias pxp="noglob pxp"

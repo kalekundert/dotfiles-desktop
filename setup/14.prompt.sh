@@ -7,9 +7,6 @@
 #    is an interesting concept, because there's usually plenty of space over
 #    there.  Furthermore, on long lines, the right hand prompt will get
 #    overwritten.
-#
-#    It might be worth considering that this effect would be difficult to
-#    duplicate in ipython.
 
 # Define a number of colors using the standard shell escape codes.  The color
 # that gets used will depend on the role of this machine.  Note that these
