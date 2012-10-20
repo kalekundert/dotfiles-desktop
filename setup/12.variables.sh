@@ -1,8 +1,10 @@
 if [[ $PATH != *hacking/scripts* ]]; then
     export PATH=~/hacking/scripts:$PATH
     export PATH=~/hacking/installs/bin:$PATH
+    export PATH=~/hacking/installs/sbin:$PATH
     export PATH=~/research/software/scripts:$PATH
     export PATH=~/research/software/installs/bin:$PATH
+    export PATH=~/research/software/installs/sbin:$PATH
 fi
 
 export EDITOR=vim
