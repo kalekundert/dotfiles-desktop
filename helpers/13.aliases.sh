@@ -135,6 +135,7 @@ alias ju='java org.junit.runner.JUnitCore'
 # ==================
 alias sakura='fork sakura'
 alias firefox='fork firefox'
+alias thunderbird='fork thunderbird'
 alias abiword='fork abiword'
 alias gimp='fork gimp'
 alias inkscape='fork inkscape'

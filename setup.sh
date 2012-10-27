@@ -1,3 +1,3 @@
-for SCRIPT in ~/.zsh/setup/*; do
-    test -s $SCRIPT && source $SCRIPT
+for SCRIPT in ~/.shell/helpers/*; do
+    source $SCRIPT
 done
