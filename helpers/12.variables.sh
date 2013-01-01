@@ -11,9 +11,10 @@ export EDITOR=vim
 export BROWSER=firefox
 
 export MAN_PATH=~/hacking/installs/man
-export PYTHONPATH=~/hacking:~/research/software/libraries
+export PYTHONPATH=~/hacking/libraries:~/research/software/libraries
 export CLASSPATH=.:./bin/:usr/share/java
 export TEXINPUTS=~/hacking/config/latex:
+export BSTINPUTS=~/hacking/config/latex:
 
 export AUTOSSH_PORT=21109
 export AUTOSSH_POLL=5
