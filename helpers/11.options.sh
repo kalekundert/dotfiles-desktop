@@ -8,14 +8,13 @@ if [ $THIS_SHELL = zsh ]; then
     # Enable extended globbing.
     setopt extended_glob
     setopt bare_glob_qual
-    setopt nohup            # This doesn't seem to work...
 
     fpath=(~/.zsh/completions $fpath)
 
     # The following lines were added by compinstall
     zstyle :compinstall filename '/home/kale/.zshrc'
     autoload -Uz compinit && compinit
-    autoload -U "~/.zsh/completions/*(:t)"
+    autoload -U "~/.shell/completions/*(:t)"
     autoload zmv
 
     # These lines make tab-completion more verbose.
