@@ -30,14 +30,17 @@ function ls () {
     if [ $# -eq 1 ] && [ -e '.lsrc' ]; then
         source '.lsrc'
     else
-        /bin/ls -X --color $@                                                 \
-            --hide="*~"                                                       \
-            --hide="*.pyc"                                                    \
-            --hide="\#*\#"                                                    \
-            --hide="*.aux"                                                    \
-            --hide="*.nlo"                                                    \
-            --hide="*.bbl"                                                    \
-            --hide="*.blg"                                                    \
+        /bin/ls $@                                                          \
+            -X                                                              \
+            --color                                                         \
+            --group-directories-first                                       \
+            --hide="*~"                                                     \
+            --hide="*.pyc"                                                  \
+            --hide="\#*\#"                                                  \
+            --hide="*.aux"                                                  \
+            --hide="*.nlo"                                                  \
+            --hide="*.bbl"                                                  \
+            --hide="*.blg"                                                  \
             --hide="lost+found"
     fi
 }
@@ -78,12 +81,15 @@ alias :wq='true'
 # Git {{{1
 # ===
 alias ga='git add'
-alias gd='git diff'
 alias gc='git commit'
-alias gp='git pull'
-alias gu='git push'
+alias gca='git commit -a'
 alias gb='git branch'
 alias gk='git checkout'
+alias gm='git merge'
+alias gd='git diff'
+alias gp='git pull'
+alias gu='git push'
+alias gpu='git pull && git push'
 alias wgs='watch git status'
 
 # Make 'git status' seem to understand a directory argument.
@@ -131,12 +137,21 @@ alias ja='java -ea'
 alias jc='javac -g'
 alias ju='java org.junit.runner.JUnitCore'
 
+# Reasearch Tools {{{1
+# ===============
+alias rn='~/rosetta/source/ninja_build.py'
+alias rf='~/rosetta/source/ninja/refocus-test'
+alias rb='~/rosetta/source/ninja/compile-test'
+alias rx='~/rosetta/source/ninja/execute-test'
+alias rd='~/rosetta/source/ninja/debug-test'
+
 # Other Applications {{{1
 # ==================
 alias sakura='fork sakura'
 alias firefox='fork firefox'
 alias thunderbird='fork thunderbird'
 alias abiword='fork abiword'
+alias scribus='fork scribus'
 alias gimp='fork gimp'
 alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
