@@ -9,7 +9,7 @@ if [ $THIS_SHELL = zsh ]; then
     setopt extended_glob
     setopt bare_glob_qual
 
-    fpath=(~/.zsh/completions $fpath)
+    fpath=(~/.shell/completions $fpath)
 
     # The following lines were added by compinstall
     zstyle :compinstall filename '/home/kale/.zshrc'
