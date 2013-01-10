@@ -1,6 +1,7 @@
 # General Utilities {{{1
 # =================
-alias rc='source ~/.zshrc'
+alias xx='exec $SHELL'
+alias xrc='source ~/.zshrc'
 alias quit='exit'
 alias xsu='exec su'
 alias simon-says='sudo'
