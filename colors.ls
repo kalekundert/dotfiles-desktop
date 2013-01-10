@@ -103,5 +103,3 @@ STICKY_OTHER_WRITABLE 01;35 # dir that is sticky and other-writable (+t,o+w)
 # This is for files with execute permission:
 EXEC 01;32
 
-# List any file extensions like '.gz' or '.tar' that you would like ls
-# to colorize below. Put the extension, a space, and the color init string.
