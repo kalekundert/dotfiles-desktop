@@ -5,6 +5,7 @@ alias xrc='source ~/.zshrc'
 alias quit='exit'
 alias xsu='exec su'
 alias simon-says='sudo'
+alias yum='sudo yum'
 alias top='\top -u $USER'
 alias topall='\top'
 alias date='\date +"%A, %B %-d%n%-I:%M %p"'
@@ -29,13 +30,14 @@ alias here='cd -P .'
 
 function ls () {
     if [ $# -eq 1 ] && [ -e '.lsrc' ]; then
-        source '.lsrc'
+        ./.lsrc
     else
         /bin/ls $@                                                          \
             -X                                                              \
             --color                                                         \
             --group-directories-first                                       \
             --hide="*~"                                                     \
+            --hide="*.o"                                                    \
             --hide="*.pyc"                                                  \
             --hide="\#*\#"                                                  \
             --hide="*.aux"                                                  \
@@ -153,6 +155,7 @@ alias firefox='fork firefox'
 alias thunderbird='fork thunderbird'
 alias abiword='fork abiword'
 alias scribus='fork scribus'
+alias chemdraw='fork gchempaint'
 alias gimp='fork gimp'
 alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
