@@ -1,4 +1,5 @@
 if [[ $PATH != *hacking/scripts* ]]; then
+    export PATH=~/.local/bin:$PATH
     export PATH=~/hacking/scripts:$PATH
     export PATH=~/hacking/installs/bin:$PATH
     export PATH=~/hacking/installs/sbin:$PATH
@@ -19,3 +20,5 @@ export BSTINPUTS=~/hacking/config/latex:
 export AUTOSSH_PORT=21109
 export AUTOSSH_POLL=5
 export AUTOSSH_PIDFILE=~/.ssh/autossh.pid
+
+export GPG_TTY=`tty`
