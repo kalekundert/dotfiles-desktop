@@ -83,23 +83,23 @@ EIGHTBIT 1
 NORMAL 00       # no color code at all
 FILE 00         # normal file, use no color at all
 RESET 00        # reset to "normal" color
-DIR 01;34       # directory
-LINK 01;36      # symbolic link
-FIFO 01;35      # pipe
-SOCK 01;35      # socket
-DOOR 01;35      # door
-BLK 01;35       # block device driver
-CHR 01;35       # character device driver
-ORPHAN 01;31    # symlink to nonexistent file, or non-stat'able file
-MISSING 01;31   # ... and the files they point to
-SETUID 01;35    # file that is setuid (u+s)
-SETGID 01;35    # file that is setgid (g+s)
-STICKY 01;35    # dir with the sticky bit set (+t) and not other-writable
-CAPABILITY 01;35    # file with capability
+DIR 00;34       # directory
+LINK 00;36      # symbolic link
+FIFO 00;35      # pipe
+SOCK 00;35      # socket
+DOOR 00;35      # door
+BLK 00;35       # block device driver
+CHR 00;35       # character device driver
+ORPHAN 00;31    # symlink to nonexistent file, or non-stat'able file
+MISSING 00;31   # ... and the files they point to
+SETUID 00;35    # file that is setuid (u+s)
+SETGID 00;35    # file that is setgid (g+s)
+STICKY 00;35    # dir with the sticky bit set (+t) and not other-writable
+CAPABILITY 00;35    # file with capability
 MULTIHARDLINK 00        # regular file with more than one link
-OTHER_WRITABLE 01;35    # dir that is other-writable (o+w) and not sticky
-STICKY_OTHER_WRITABLE 01;35 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 00;35    # dir that is other-writable (o+w) and not sticky
+STICKY_OTHER_WRITABLE 00;35 # dir that is sticky and other-writable (+t,o+w)
 
 # This is for files with execute permission:
-EXEC 01;32
+EXEC 00;32
 
