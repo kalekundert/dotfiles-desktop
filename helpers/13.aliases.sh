@@ -5,12 +5,10 @@ alias xrc='source ~/.zshrc'
 alias quit='exit'
 alias xsu='exec su'
 alias simon-says='sudo'
-alias yum='sudo yum'
 alias top='\top -u $USER'
 alias topall='\top'
 alias date='\date +"%A, %B %-d%n%-I:%M %p"'
 alias where='whereis'
-alias updatedb='sudo updatedb'
 
 alias pu='pushd'
 alias po='popd'
@@ -19,6 +17,12 @@ alias here='cd -P .'
 
 alias network='fork wicd-client -n'
 alias monitor='fork lxrandr'
+
+alias yum='sudo yum'
+alias zzz='sudo pm-suspend'
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown now'
+alias updatedb='sudo updatedb'
 
 # In some directories, I like to have more control over what 'ls' displays.  
 # For example, sometimes I like to sort files alphabetically and sometimes I 
@@ -187,8 +191,8 @@ function evince () {
 
 # SSH and Networking {{{1
 # ==================
-alias ssh-kortemmelab-proxy='autossh -fND 9050 kortemmelab-proxy'
-alias ssh-mountainview-proxy='autossh -fND 9050 mountainview-proxy'
+alias ssh-kortemmelab-proxy='ssh -fND 9050 kortemmelab-proxy'
+alias ssh-mountainview-proxy='ssh -fND 9050 mountainview-proxy'
 
 alias pg='ping google.com'
 alias pk='ping kxgames.net'
