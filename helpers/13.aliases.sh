@@ -46,12 +46,13 @@ function ls () {
             --group-directories-first                                       \
             --hide="*~"                                                     \
             --hide="*.o"                                                    \
-            --hide="*.pyc"                                                  \
+            --hide="*.pyc"                                                    \
             --hide="\#*\#"                                                  \
             --hide="*.aux"                                                  \
             --hide="*.nlo"                                                  \
             --hide="*.bbl"                                                  \
             --hide="*.blg"                                                  \
+            --hide="__pycache__"                                            \
             --hide="lost+found"
     fi
 }
@@ -64,6 +65,7 @@ alias sl='ls'
 alias ld='ls'
 alias ks='ls'
 alias sk='ls'
+alias lks='ls'
 alias la='ls -A'
 alias ll='ls -l'
 alias lr='ls -R'
@@ -96,6 +98,7 @@ alias gc='git commit'
 alias gca='git commit -a'
 alias gb='git branch'
 alias gk='git checkout'
+alias gl='git log'
 alias gm='git merge'
 alias gd='git diff'
 alias gp='git pull'
@@ -150,11 +153,11 @@ alias ju='java org.junit.runner.JUnitCore'
 
 # Reasearch Tools {{{1
 # ===============
-alias rn='~/rosetta/source/ninja_build.py'
-alias rf='~/rosetta/source/ninja/refocus-test'
-alias rb='~/rosetta/source/ninja/compile-test'
-alias rx='~/rosetta/source/ninja/execute-test'
-alias rd='~/rosetta/source/ninja/debug-test'
+alias rf='rosetta_focus'
+alias rb='noglob rosetta_build'
+alias rx='rosetta_execute'
+alias rd='rosetta_debug'
+alias rs='rosetta_show'
 
 # Other Applications {{{1
 # ==================
