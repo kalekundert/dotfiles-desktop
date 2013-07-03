@@ -66,14 +66,30 @@ fi
 
 # Set the two variables that are used to display the prompt.
 
+prePS1="$color$prompt$normal "
 PS1="$color$prompt$normal "
 
 function precmd {
+    
+    # This function is invoked before the prompt is displayed, and so it's an 
+    # ideal way to modify the prompt based on the current directory.  This 
+    # function is only used by zsh, not by bash.
 
-    # This returns the size of the current prompt, accounting for all of the
-    # various escape codes.  I have no idea how it works.  If you really want
-    # to know, the manual page for `zshexpn' might be a good place to start
-    # looking.
+    # The following logic adds the current git branch to the prompt, when in a 
+    # git repository.  It may not work on headless branches, unfortunately.
+
+    branch=$(git symbolic-ref --short HEAD) &> /dev/null
+
+    if [ $? = 0 ] && [ ! -e '.nobranch' ]; then
+        PS1=$(echo $prePS1 | sed "s:]:/$branch]:")
+    else
+        PS1=$prePS1
+    fi
+
+    # The following three lines produce the size of the current prompt, 
+    # accounting for all of the various escape codes.  I have no idea how it 
+    # works.  If you really want to know, the manual page for `zshexpn' might 
+    # be a good place to start looking.
 
     local zero='%([BSUbfksu]|([FB]|){*})'
     length=${#${(S%%)PS1//$~zero/}} 
