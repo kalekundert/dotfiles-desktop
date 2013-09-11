@@ -156,8 +156,9 @@ alias ju='java org.junit.runner.JUnitCore'
 alias rf='rosetta_focus'
 alias rb='noglob rosetta_build'
 alias rx='rosetta_execute'
-alias rd='rosetta_debug'
+alias rd='rosetta_document'
 alias rs='rosetta_show'
+alias ru='cd ../$(basename $(pwd))'
 
 # Other Applications {{{1
 # ==================
@@ -175,6 +176,7 @@ alias rhythmbox='fork rhythmbox'
 alias quodlibet='fork quodlibet'
 alias exfalso='fork exfalso'
 alias eog='fork eog'
+alias img='fork gpicview'
 
 # The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
 # because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
