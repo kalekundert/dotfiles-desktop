@@ -11,9 +11,13 @@ EXPECTED_PATH=$(dirname $SCRIPT_PATH)
 PROMPT="Please confirm the path to the installation: "
 read -p "$PROMPT" -e -i "$EXPECTED_PATH" INSTALL_PATH
 
-ln -nsf $INSTALL_PATH ~/.shell
+if [ ! $INSTALL_PATH -ef ~/.shell ]; then 
+    ln -nsf $INSTALL_PATH ~/.shell
+fi
+
 ln -nsf $INSTALL_PATH/setup.sh ~/.zshrc
 ln -nsf $INSTALL_PATH/setup.sh ~/.bashrc
+ln -nsf $INSTALL_PATH/setup.sh ~/.bash_profile
 ln -nsf $INSTALL_PATH/colors.ls ~/.dir_colors
 
 # If it doesn't already exist, create a shell script that will provide access 
