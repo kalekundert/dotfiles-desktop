@@ -131,16 +131,18 @@ alias ipython='ipython --pylab'
 # entire interpreter.  Usually this is either to do a bit of arithmetic (pxp) 
 # or to get help on simple objects (pxh).
 
+imports="from math import *"
+
 function px () {
-    python -c "$*"
+    python -c "$imports; $*"
 }
 
 function pxp () {
-    python -c "print $*"
+    python -c "$imports; print $*"
 }
 
 function pxh () {
-    python -c "help($1)"
+    python -c "$imports; help($1)"
 }
 
 alias px="noglob px"
@@ -157,9 +159,12 @@ alias ju='java org.junit.runner.JUnitCore'
 # ===============
 alias rf='rosetta_focus'
 alias rb='noglob rosetta_build'
+alias rr='echo "rb -b release"; rosetta_build --build=release'
 alias rx='rosetta_execute'
-alias rd='rosetta_debug'
+alias rbx='rosetta_build && rosetta_execute'
+alias rd='rosetta_document'
 alias rs='rosetta_show'
+alias ru='cd ../$(basename $(pwd))'
 
 # Other Applications {{{1
 # ==================
@@ -172,11 +177,13 @@ alias chemdraw='fork gchempaint'
 alias gimp='fork gimp'
 alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
+alias pyspread='fork pyspread'
 alias gtkpod='fork gtkpod'
 alias rhythmbox='fork rhythmbox'
 alias quodlibet='fork quodlibet'
 alias exfalso='fork exfalso'
 alias eog='fork eog'
+alias img='fork gpicview'
 
 # The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
 # because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
@@ -196,8 +203,8 @@ function evince () {
 
 # SSH and Networking {{{1
 # ==================
-alias ssh-kortemmelab-proxy='ssh -fND 9050 kortemmelab-proxy'
-alias ssh-mountainview-proxy='ssh -fND 9050 mountainview-proxy'
+alias ssh-mountainview-proxy='ssh -fND 1080 mountainview-proxy'
+alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
 
 alias pg='ping google.com'
 alias pk='ping kxgames.net'
