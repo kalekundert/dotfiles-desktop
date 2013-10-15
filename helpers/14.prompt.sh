@@ -69,6 +69,8 @@ fi
 prePS1="$color$prompt$normal "
 PS1="$color$prompt$normal "
 
+eval `dircolors .shell/database/colors.ls`
+
 function precmd {
     
     # This function is invoked before the prompt is displayed, and so it's an 
