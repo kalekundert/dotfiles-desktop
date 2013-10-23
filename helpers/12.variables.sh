@@ -16,7 +16,7 @@ done
 export EDITOR=vim
 export BROWSER=firefox
 
-eval $(dircolors ~/.shell/colors.ls)
+eval $(dircolors ~/.shell/database/colors.ls)
 
 export MAN_PATH=~/hacking/installs/man
 export PYTHONPATH=~/.local/lib/python2.7/site-packages:~/hacking/libraries:~/research/software/libraries

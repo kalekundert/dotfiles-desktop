@@ -24,7 +24,7 @@ if [ $THIS_SHELL = zsh ]; then
     zstyle ':completion:*:warnings' format 'No matches for: %d'
     zstyle ':completion:*' group-name
 
-elif [ $THIS_SHELL = bash ]; then
+else
 
     # Enable vim-like line editing.
     set -o vi

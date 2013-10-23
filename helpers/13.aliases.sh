@@ -19,10 +19,12 @@ alias network='fork wicd-client -n'
 alias monitor='fork lxrandr'
 
 alias yum='sudo yum'
-alias zzz='sudo pm-suspend'
+alias apt-get='sudo apt-get'
+alias apt-cache='sudo apt-get'
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown now'
 alias updatedb='sudo updatedb'
+alias zzz='sudo pm-suspend'
 
 # In some directories, I like to have more control over what 'ls' displays.  
 # For example, sometimes I like to sort files alphabetically and sometimes I 
