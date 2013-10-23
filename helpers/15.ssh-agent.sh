@@ -1,16 +1,17 @@
-#!/usr/bin/env bash
+SSH_ENV="$HOME/.ssh/environment"
+ 
+function start_agent {
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+}
 
-if [ $THIS_SHELL = zsh ]; then
-    AGENTS=$(setopt nullglob; echo /tmp/ssh-*/agent.*)
-elif [ $THIS_SHELL = bash ]; then
-    AGENTS=$(shopt -s nullglob; echo /tmp/ssh-*/agent.*)
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
 fi
-
-for AGENT in $AGENTS; do
-    export SSH_AUTH_SOCK=$AGENT
-done
-
-if [ ! "$SSH_AUTH_SOCK" ]; then
-    eval `ssh-agent` > /dev/null
-fi
-
