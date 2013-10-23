@@ -201,7 +201,7 @@ function evince () {
 
 # SSH and Networking {{{1
 # ==================
-alias ssh-mountainview-proxy='ssh -fND 1080 mountainview-proxy'
+alias ssh-alanine-proxy='ssh -fND 1080 alanine-proxy'
 alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
 
 alias pg='ping google.com'
