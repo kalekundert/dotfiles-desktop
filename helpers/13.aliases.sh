@@ -67,6 +67,7 @@ alias sl='ls'
 alias ld='ls'
 alias ks='ls'
 alias sk='ls'
+alias lls='ls'
 alias lks='ls'
 alias la='ls -A'
 alias ll='ls -l'
@@ -81,8 +82,7 @@ alias zln='noglob zmv -W -p ln'
 # Vim {{{1
 # ===
 alias vi='vim'
-alias v='gvim'
-alias g='gvim'
+alias m='gvim'
 alias givm='gvim'
 alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
 
