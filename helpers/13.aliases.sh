@@ -174,22 +174,31 @@ alias ru='cd ../$(basename $(pwd))'
 
 # Other Applications {{{1
 # ==================
-alias sakura='fork sakura'
-alias firefox='fork firefox'
-alias thunderbird='fork thunderbird'
 alias abiword='fork abiword'
-alias scribus='fork scribus'
 alias chemdraw='fork gchempaint'
+alias dia='fork dia'
+alias eog='fork eog'
+alias exfalso='fork exfalso'
+alias firefox='fork firefox'
 alias gimp='fork gimp'
+alias gnumeric='fork gnumeric'
+alias gtkpod='fork gtkpod'
+alias img='fork gpicview'
+alias imagej='fork /home/kale/research/software/projects/fiji/ImageJ-linux64'
 alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
+alias mendeley='fork /home/kale/research/software/projects/mendeley/bin/mendeleydesktop'
+alias mysql-workbench='fork mysql-workbench'
 alias pyspread='fork pyspread'
-alias gtkpod='fork gtkpod'
-alias rhythmbox='fork rhythmbox'
 alias quodlibet='fork quodlibet'
-alias exfalso='fork exfalso'
-alias eog='fork eog'
-alias img='fork gpicview'
+alias rhythmbox='fork rhythmbox'
+alias sakura='fork sakura'
+alias scribus='fork scribus'
+alias skype='fork skype'
+alias sqliteman='fork sqliteman'
+alias thunderbird='fork thunderbird'
+alias vlc='fork vlc'
+alias ape='fork tclsh ~/research/software/third_party/ape/AppMain.tcl'
 
 # The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
 # because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
@@ -198,6 +207,17 @@ alias img='fork gpicview'
 alias pymol='fork pymol -qx'
 alias pymol-tk='fork pymol -q'
 
+# I need a function to alias two_cents so I can provide the -D option only if 
+# no other arguments are specified.
+
+function two_cents () {
+    if [ $# = 0 ]; then
+        command two_cents -D
+    else
+        command two_cents $@
+    fi
+}
+
 # The zsh completion system doesn't seem to work very well on aliases.  Since I 
 # have a custom completion script for evince, I had to write the 'fork' alias 
 # as a shell function instead.  (I would have written it as a one-liner, but 
@@ -205,6 +225,17 @@ alias pymol-tk='fork pymol -q'
 
 function evince () {
     fork evince $@
+}
+
+# If nautilus is not given an argument, run it on the current working directory 
+# instead of the home directory.
+
+function nautilus () {
+    if [ $# -eq 0 ]; then
+        fork nautilus .
+    else
+        fork nautilus
+    fi
 }
 
 # SSH and Networking {{{1
