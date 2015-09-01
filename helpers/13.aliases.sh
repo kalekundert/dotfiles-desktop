@@ -8,7 +8,9 @@ alias simon-says='sudo'
 alias top='\top -u $USER'
 alias topall='\top'
 alias date='\date +"%A, %B %-d%n%-I:%M %p"'
+alias which='/bin/which'
 alias where='whereis'
+alias len='wc -c'
 
 alias pu='pushd'
 alias po='popd'
@@ -18,9 +20,10 @@ alias here='cd -P .'
 alias network='fork wicd-client -n'
 alias monitor='fork lxrandr'
 
-alias yum='sudo yum'
+alias yum='sudo dnf'
 alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-get'
+alias virt-manager='sudo virt-manager'
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown now'
 alias updatedb='sudo updatedb'
@@ -48,14 +51,15 @@ function ls () {
             --group-directories-first                                       \
             --hide="*~"                                                     \
             --hide="*.o"                                                    \
-            --hide="*.pyc"                                                    \
+            --hide="*.pyc"                                                  \
             --hide="\#*\#"                                                  \
             --hide="*.aux"                                                  \
             --hide="*.nlo"                                                  \
             --hide="*.bbl"                                                  \
             --hide="*.blg"                                                  \
             --hide="__pycache__"                                            \
-            --hide="lost+found"
+            --hide="lost+found"                                             \
+            --hide="*.egg-info"
     fi
 }
 
@@ -95,9 +99,9 @@ alias :wq='true'
 
 # Git {{{1
 # ===
-alias ga='git add'
+alias ga='git add --all'
 alias gc='git commit'
-alias gca='git commit -a'
+alias gca='git commit --all'
 alias gb='git branch'
 alias gk='git checkout'
 alias gl='git log'
@@ -161,11 +165,11 @@ alias ja='java -ea'
 alias jc='javac -g'
 alias ju='java org.junit.runner.JUnitCore'
 
-# Reasearch Tools {{{1
-# ===============
+# Rosetta {{{1
+# =======
 alias rf='rosetta_focus'
 alias rb='noglob rosetta_build'
-alias rr='echo "rb -b release"; rosetta_build --build=release'
+alias rr='rosetta_build --build=release'
 alias rx='rosetta_execute'
 alias rbx='rosetta_build && rosetta_execute'
 alias rd='rosetta_document'
@@ -185,7 +189,6 @@ alias gnumeric='fork gnumeric'
 alias gtkpod='fork gtkpod'
 alias img='fork gpicview'
 alias imagej='fork /home/kale/research/software/projects/fiji/ImageJ-linux64'
-alias inkscape='fork inkscape'
 alias libreoffice='fork libreoffice'
 alias mendeley='fork /home/kale/research/software/projects/mendeley/bin/mendeleydesktop'
 alias mysql-workbench='fork mysql-workbench'
@@ -225,6 +228,10 @@ function two_cents () {
 
 function evince () {
     fork evince $@
+}
+
+function inkscape () {
+    fork inkscape $@
 }
 
 # If nautilus is not given an argument, run it on the current working directory 
