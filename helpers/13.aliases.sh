@@ -120,12 +120,18 @@ function gs () {
 
 # Python {{{1
 # ======
-alias py=python
-alias ipy=ipython
-alias ism=isympy
-
-alias python='python -W ignore'
-alias ipython='ipython --pylab'
+alias py=python3
+alias py2=python2
+alias py3=python3
+alias ipy='ipython3 --pylab'
+alias ipy2='ipython2 --pylab'
+alias ipy3='ipython3 --pylab'
+alias ism=isympy3
+alias ism2=isympy2
+alias ism3=isympy3
+alias pytest='py.test-3.4'
+alias pytest2='py.test-2.7'
+alias pytest3='py.test-3.4'
 
 # Sometimes I want to run small snippets of python code without launching the 
 # entire interpreter.  Usually this is either to do a bit of arithmetic (pxp) 
@@ -134,15 +140,15 @@ alias ipython='ipython --pylab'
 imports="from math import *"
 
 function px () {
-    python -c "$imports; $*"
+    python3 -c "$imports; $*"
 }
 
 function pxp () {
-    python -c "$imports; print $*"
+    python3 -c "$imports; print($*)"
 }
 
 function pxh () {
-    python -c "$imports; help($1)"
+    python3 -c "$imports; help($1)"
 }
 
 alias px="noglob px"
