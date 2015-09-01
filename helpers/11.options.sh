@@ -11,18 +11,21 @@ if [ $THIS_SHELL = zsh ]; then
 
     fpath=(~/.shell/completions $fpath)
 
-    # The following lines were added by compinstall
+    # Enable fancy tab completion
     zstyle :compinstall filename '/home/kale/.zshrc'
+    autoload -Uz bashcompinit && bashcompinit
     autoload -Uz compinit && compinit
     autoload -U "~/.shell/completions/*(:t)"
-    autoload zmv
 
-    # These lines make tab-completion more verbose.
+    # Make tab-completion much more verbose.
     zstyle ':completion:*' verbose yes
     zstyle ':completion:*:descriptions' format '%B%d%b'
     zstyle ':completion:*:messages' format '%d'
     zstyle ':completion:*:warnings' format 'No matches for: %d'
     zstyle ':completion:*' group-name
+
+    # Enable the awesome 'zmv' function.
+    autoload zmv
 
 else
 
