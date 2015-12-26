@@ -1,0 +1,5 @@
+# top mem show
+
+# top cpu kill
+
+ps ux | tail -n +2 | sort -k3 -r | head -n 1 | awk '{ print $2 }' | xargs "echo kill"

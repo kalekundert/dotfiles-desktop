@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+import nonstdlib
+
+def read_line():
+    try:
+        return input().replace('\t', '    ').rstrip()
+    except EOFError:
+        raise StopIteration
+
+def wrap_line(line):
+    rows = []
+    width = nonstdlib.terminal_width()
+
+    while len(line) > width:
+        rows.append(line[:width])
+        line = line[width:]
+
+    rows.append(line)
+    return rows
+
+def main():
+    rows_printed = 0
+    rows_available = nonstdlib.terminal_height() - 2
+
+    try:
+        while True:
+            line = read_line()
+            rows = wrap_line(line)
+
+            for row in rows:
+                print(row); rows_printed += 1
+                if rows_printed >= rows_available:
+                    raise StopIteration
+
+    except StopIteration:
+        pass
+
+    except KeyboardInterrupt:
+        print()
+
+
+if __name__ == '__main__':
+    main()
+

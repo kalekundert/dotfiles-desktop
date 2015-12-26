@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import time, nonstdlib
+from datetime import datetime
+
+date_format = "%A, %B %-d"
+time_format = "%-l:%M %p"
+
+def update():
+    now = datetime.now()
+
+    date_string = now.strftime(date_format)
+    time_string = now.strftime(time_format)
+
+    nonstdlib.clear()
+    nonstdlib.write(date_string + '\n')
+
+    nonstdlib.clear()
+    nonstdlib.write(time_string)
+
+    nonstdlib.move_up(1)
+    nonstdlib.conceal_cursor()
+
+while True:
+    try:
+        update();
+        time.sleep(1)
+
+    except KeyboardInterrupt:
+        update();
+        break
+
+nonstdlib.move_down(1)
+nonstdlib.reveal_cursor()
+
+print
+
+

@@ -1,0 +1,35 @@
+#!/usr/bin/env python2
+
+import argparse
+import getpass
+import hashlib
+import time
+import nonstdlib
+
+parser = argparse.ArgumentParser(description="Generate strong and unique password phrases.")
+parser.add_argument('domain', help="generate a password specific to this domain.")
+parser.add_argument('--words', '-w', type=int, default=4, help="put this many words into the passphrase.")
+parser.add_argument('--delay', '-d', type=int, default=300, help="wait this long before clearing the terminal.")
+arguments = parser.parse_args()
+
+phrase = ''
+dictionary = '/home/kale/hacking/scripts/passwords/words.txt'
+
+with open(dictionary) as file:
+    alphabet = file.readlines()
+
+domain = arguments.domain
+length = arguments.words
+
+key = getpass.getpass()
+digest = hashlib.sha512(domain + key).hexdigest()
+
+for chunk in nonstdlib.yield_partitioned(digest, length):
+    index = int(chunk, 16) % len(alphabet)
+    phrase += alphabet[index].strip() + ' '
+
+try:
+    nonstdlib.write(phrase); time.sleep(arguments.delay)
+    nonstdlib.clear()
+except KeyboardInterrupt:
+    nonstdlib.clear()

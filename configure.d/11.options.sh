@@ -9,13 +9,13 @@ if [ $THIS_SHELL = zsh ]; then
     setopt extended_glob
     setopt bare_glob_qual
 
-    fpath=(~/.shell/completions $fpath)
+    fpath=(~/.shell/tab_completion $fpath)
 
     # Enable fancy tab completion
     zstyle :compinstall filename '/home/kale/.zshrc'
     autoload -Uz bashcompinit && bashcompinit
     autoload -Uz compinit && compinit
-    autoload -U "~/.shell/completions/*(:t)"
+    autoload -U "~/.shell/tab_completion/*(:t)"
 
     # Make tab-completion much more verbose.
     zstyle ':completion:*' verbose yes
