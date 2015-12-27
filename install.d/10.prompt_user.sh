@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-SYSTEM_SCRIPT=$INSTALL_PATH/configure.d/10.system.sh
+SYSTEM_SCRIPT=$CONFIG_DIR/10.system.sh
 
 HOME_USER=""
 HOME_HOST=""

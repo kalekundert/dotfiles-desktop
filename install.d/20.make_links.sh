@@ -2,12 +2,15 @@
 
 # Link the configure script so that the shells know where to find it.
 
-ln -nsf $INSTALL_PATH/configure.sh ~/.zshrc
-ln -nsf $INSTALL_PATH/configure.sh ~/.bashrc
-ln -nsf $INSTALL_PATH/configure.sh ~/.bash_profile
+ln -nsf $SCRIPT_DIR/configure.sh ~/.zshrc
+ln -nsf $SCRIPT_DIR/configure.sh ~/.bashrc
+ln -nsf $SCRIPT_DIR/configure.sh ~/.bash_profile
 
 # Tell programs where various kinds of media should be downloaded.
 
 mkdir -p ~/.config
-ln -nsf $INSTALL_PATH/install.d/resources/user-dirs.dirs ~/.config/
-ln -nsf $INSTALL_PATH/install.d/resources/user-dirs.locale ~/.config/
+mkdir -p ~/.config/sakura
+
+ln -nsf $INSTALL_DIR/resources/user-dirs.dirs ~/.config/
+ln -nsf $INSTALL_DIR/resources/user-dirs.locale ~/.config/
+ln -nsf $INSTALL_DIR/resources/sakura.conf ~/.config/sakura/

@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 SCRIPT_PATH=$(readlink -f $0)
-INSTALL_PATH=$(dirname $SCRIPT_PATH)
+SCRIPT_DIR=$(dirname $SCRIPT_PATH)
+CONFIG_DIR=$SCRIPT_DIR/configure.d
+INSTALL_DIR=$SCRIPT_DIR/install.d
 
-cd $INSTALL_PATH
-for SCRIPT in install.d/*.sh; do
+for SCRIPT in $INSTALL_DIR/*.sh; do
     source $SCRIPT
 done
-cd ~-
