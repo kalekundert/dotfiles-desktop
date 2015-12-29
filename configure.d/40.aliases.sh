@@ -133,7 +133,7 @@ alias ipy3='ipython3 --pylab'
 alias ism=isympy3
 alias ism2=isympy2
 alias ism3=isympy3
-alias pytest='py.test-3.4'
+alias pytest='py.test'
 alias pytest2='py.test-2.7'
 alias pytest3='py.test-3.4'
 
