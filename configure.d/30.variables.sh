@@ -1,14 +1,14 @@
 if [ -z "$PATH_CONFIGURED" ]; then
     export PATH_CONFIGURED='yes'
-
     export PATH="/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin"
-    for SUBDIR in ~/.local/bin ~/.local/bin/*; do
-        if [[ -d $SUBDIR ]]; then
-            export PATH=$SUBDIR:$PATH
-        fi
-    done
+    if [ -d ~/.local/bin ]; then
+        for SUBDIR in ~/.local/bin ~/.local/bin/*; do
+            if [[ -d $SUBDIR ]]; then
+                export PATH=$SUBDIR:$PATH
+            fi
+        done
+    fi
     export PATH="$HOME/.shell/scripts:$PATH"
-
     export MANPATH=~/.local/man:$MANPATH
 fi
 

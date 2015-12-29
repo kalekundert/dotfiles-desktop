@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-if [ "$EUID" -n 0 ]; then 
+if [ "$EUID" -ne 0 ]; then 
 
     # Make python2 and python3 virtual environments.
 
