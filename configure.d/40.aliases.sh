@@ -224,6 +224,10 @@ function two_cents () {
 # as a shell function instead.  (I would have written it as a one-liner, but 
 # that confuses bash.)
 
+function zathura () {
+    fork zathura $@
+}
+
 function evince () {
     fork evince $@
 }
