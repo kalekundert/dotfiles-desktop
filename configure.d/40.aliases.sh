@@ -167,14 +167,11 @@ alias ju='java org.junit.runner.JUnitCore'
 
 # Rosetta {{{1
 # =======
-alias rf='rosetta_focus'
-alias rb='noglob rosetta_build'
-alias rr='rosetta_build --build=release'
-alias rx='rosetta_execute'
-alias rbx='rosetta_build && rosetta_execute'
-alias rd='rosetta_document'
-alias rs='rosetta_show'
-alias ru='cd ../$(basename $(pwd))'
+alias rk='rdt_stub'
+alias rb='rdt_build debug'
+alias rr='rdt_build release'
+alias ru='rdt_unit_test'
+alias rd='rdt_doxygen'
 
 # Other Applications {{{1
 # ==================
