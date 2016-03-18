@@ -7,8 +7,12 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         "@C Development Tools and Libraries"                \
         ack                                                 \
         acpi                                                \
-        htop                                                \
+        calibre                                             \
         firefox                                             \
+        fuse-sshfs                                          \
+        gnumeric                                            \
+        htop                                                \
+        libreoffice                                         \
         pithos                                              \
         python3-devel                                       \
         python3-scipy                                       \
@@ -25,6 +29,9 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         vim-enhanced                                        \
         vim-X11                                             \
         xbacklight                                          \
+        xorg-x11-server-Xvfb                                \
+        zathura                                             \
+        zathura-plugins-all                                 \
         zsh                                                 \
 
 fi
