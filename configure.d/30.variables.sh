@@ -22,6 +22,8 @@ export OPENBOX_EMAIL=thunderbird
 
 eval $(dircolors ~/.shell/configure.d/resources/colors.ls)
 
+export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 export PYTHONPATH=~/research/software/third_party/imp/build/lib
 export CLASSPATH=.:./bin/:usr/share/java:/home/kale/hacking/third_party:/home/kale/hacking/projects/android-sdk/tools
 export TEXINPUTS=~/hacking/config/latex:
