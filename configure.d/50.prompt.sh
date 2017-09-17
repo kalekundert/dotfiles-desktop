@@ -75,6 +75,10 @@ function precmd {
     # ideal way to modify the prompt based on the current directory.  This 
     # function is only used by zsh, not by bash.
 
+    # Set the title of the terminal window to be the same as the prompt.
+
+    #print -Pn "\e]0;$prompt\a"
+
     # The following logic adds the current git branch to the prompt, when in a 
     # git repository.  It may not work on headless branches, unfortunately.
 
