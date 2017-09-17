@@ -41,7 +41,6 @@ done
 # Display a help message, if requested. {{{1
 
 if [ -n "$DISPLAY_HELP" ]; then
-
     echo "Usage:"
     echo "    backup [options]"
     echo
@@ -58,30 +57,29 @@ if [ -n "$DISPLAY_HELP" ]; then
     echo "    -h, --help"
     echo "        Display this help message.  No backups are performed."
     echo 
-
     exit 0
-
 fi
 
 # }}}1
 
 duplicity $FULL_OR_INCREMENTAL                  \
+    ~                                           \
     --no-encryption                             \
     --allow-source-mismatch                     \
     --full-if-older-than 6M                     \
     --ssh-options "$PRIVATE_KEY"                \
-    --exclude-globbing-filelist ~/.backuprc     \
-    ~ ssh://$BACKUP_HOST/backups                |& tee --append $EMAIL_BODY
+    --exclude-filelist ~/.backuprc              \
+    rsync://$BACKUP_HOST//home/kale/backups     |& tee --append $EMAIL_BODY
 
 duplicity remove-older-than 6M                  \
     --force                                     \
     --allow-source-mismatch                     \
     --ssh-options "$PRIVATE_KEY"                \
-    ssh://$BACKUP_HOST/backups                  |& tee --append $EMAIL_BODY
+    rsync://$BACKUP_HOST//home/kale/backups     |& tee --append $EMAIL_BODY
 
 # Find how much space backups are using. {{{1
 
-BACKUP_SIZE=`ssh $PRIVATE_KEY $BACKUP_HOST du -sh /kortemmelab/home/kale/backups`
+BACKUP_SIZE=`ssh $PRIVATE_KEY $BACKUP_HOST du -sh /home/kale/backups`
 BACKUP_SIZE=`echo $BACKUP_SIZE | cut -f 1`
 
 echo -e "\nSpace used by backups: $BACKUP_SIZE" |& tee --append $EMAIL_BODY
