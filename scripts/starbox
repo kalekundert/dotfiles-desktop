@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import fileinput
+
+lines = [x.strip() for x in fileinput.input()]
+longest_line = max(len(x) for x in lines)
+half_box_size = longest_line // 2 + 2
+box_size = 2 * half_box_size + 1
+
+
+print('* ' * half_box_size + '*')
+for line in lines:
+    print(f'* {line.strip():{box_size - 4}s} *')
+print('* ' * half_box_size + '*')

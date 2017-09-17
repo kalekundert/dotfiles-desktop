@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+"""\
+Usage:
+    xkcd_color_to_name <red> <green> <blue>
+"""
+
+import docopt, re
+from pathlib import Path
+args = docopt.docopt(__doc__)
+
+def load_xkcd_data():
+    table = {}
+    path = Path(__file__).parent / 'xkcd_color_data.dat'
+
+    with path.open() as file:
+        for line in file:
+            match = re.match('\[(\d+), (\d+), (\d+)\] (.+)', line)
+            r, g, b, name = match.groups()
+            table[r, g, b] = name
+
+    return table
+
+
+rgb_to_name = load_xkcd_data()
+rgb = args['<red>'], args['<green>'], args['<blue>']
+print(rgb_to_name[rgb])

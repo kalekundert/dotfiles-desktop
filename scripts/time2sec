@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+"""
+Usage:
+    time2sec <mm:ss>
+"""
+
+import docopt
+import datetime
+
+args = docopt.docopt(__doc__)
+min, sec = args['<mm:ss>'].split(':')
+print(60 * int(min) + int(sec))
+
+

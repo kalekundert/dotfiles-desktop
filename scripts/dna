@@ -49,7 +49,6 @@ def random_sequence(num):
     ])
 
 
-
 if __name__ == '__main__':
     import docopt
     args = docopt.docopt(__doc__)

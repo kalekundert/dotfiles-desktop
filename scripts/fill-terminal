@@ -1,22 +1,42 @@
 #!/usr/bin/env python3
 
-import nonstdlib
+import re, nonstdlib
 
 def read_line():
     try:
-        return input().replace('\t', '    ').rstrip()
+        return input()
     except EOFError:
         raise StopIteration
 
 def wrap_line(line):
+    row = ''
     rows = []
+    cursor = 0
+    line = line.replace('\t', '    ').rstrip()
     width = nonstdlib.terminal_width()
 
-    while len(line) > width:
-        rows.append(line[:width])
-        line = line[width:]
+    for i, token in enumerate(re.split('(\x1b.*?[a-zA-Z])', line)):
 
-    rows.append(line)
+        # The even tokens are the delimiters, which are ANSI escape codes.  
+        # These should be added to the line without consuming any space.
+        if i % 2 == 1:
+            row += token
+            cursor += 0
+
+        # The odd tokens are the regular text between any escape codes.  These 
+        # should be added to the line and broken as necessary.
+        else:
+            while cursor + len(token) > 80:
+                cutoff = 80 - cursor
+                row += token[:cutoff]
+                token = token[cutoff:]
+                rows.append(row)
+                row, cursor = '', 0
+
+            row += token
+            cursor += len(token)
+
+    rows.append(row)
     return rows
 
 def main():
@@ -29,7 +49,8 @@ def main():
             rows = wrap_line(line)
 
             for row in rows:
-                print(row); rows_printed += 1
+                print(row)
+                rows_printed += 1
                 if rows_printed >= rows_available:
                     raise StopIteration
 

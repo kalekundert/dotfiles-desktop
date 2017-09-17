@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+ln -sf python3 ~/.local/bin/python
+ln -sf pip3 ~/.local/bin/pip
