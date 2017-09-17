@@ -13,6 +13,7 @@ alias which='/bin/which'
 alias where='whereis'
 alias len='wc -c'
 
+alias cd..='cd ..'
 alias pu='pushd'
 alias po='popd'
 alias back='cd ~-'
@@ -51,7 +52,6 @@ function ls () {
             --color                                                         \
             --group-directories-first                                       \
             --hide="*~"                                                     \
-            --hide="*.o"                                                    \
             --hide="*.pyc"                                                  \
             --hide="\#*\#"                                                  \
             --hide="*.aux"                                                  \
@@ -60,6 +60,10 @@ function ls () {
             --hide="*.blg"                                                  \
             --hide="__pycache__"                                            \
             --hide="lost+found"                                             \
+            --hide="autom4te.cache"                                         \
+            --hide="Makefile.in"                                            \
+            --hide="aclocal.m4"                                             \
+            --hide="autom4te.cache"                                         \
             --hide="*.egg-info"
     fi
 }
@@ -77,6 +81,10 @@ alias lks='ls'
 alias la='ls -A'
 alias ll='ls -l'
 alias lr='ls -R'
+alias lsd='ls -d */'
+
+alias lcd='cd'
+alias dc='cd'
 
 alias cr='cp -r'
 
@@ -91,6 +99,10 @@ alias m='gvim'
 alias givm='gvim'
 alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
 
+function gblog () {
+    gvim ~/personal/blog/content/$@
+}
+
 # I have a tendency to accidentally type these vim commands into the shell, and 
 # I don't like seeing the "command not found" errors that result.
 
@@ -100,28 +112,31 @@ alias :wq='true'
 
 # Git {{{1
 # ===
-alias ga='git add --all'
-alias gc='git commit'
-alias gca='git commit --all'
-alias gb='git branch'
-alias gk='git checkout'
-alias gl='git log'
-alias gm='git merge'
-alias gd='git diff'
-alias gp='git pull'
-alias gu='git push'
-alias gpu='git pull && git push'
+#alias git='hub'
 alias wgs='watch git status'
 
-# Make 'git status' seem to understand a directory argument.
+alias ga='git add'
+alias gap='git add -p'
+alias gb='git branch'
+alias gca='git commit --all --verbose'
+alias gcam='git commit --amend --verbose'
+alias gc='git commit --verbose'
+alias gdc='git diff --cached'
+alias gd='git diff'
+alias gk='git checkout'
+alias gkb='git checkout -b'
+alias gl='git log --oneline --decorate'
+alias gld='git log -u'
+alias glv='git log'
+alias gp='git push'
+alias gpu='git pull && git push'
+alias gs='git status'
+alias gu='git pull'
 
-function gs () {
-    if [ -d "$1" ]; then
-        cd $1; git status; cd ~- 
-    else
-        git status
-    fi
-}
+# Iterate through all the git aliases and make corresponding shell aliases.
+#for ga in $(git config -l | grep \^alias | cut -d. -f2 | cut -d= -f1); do
+    #alias g$ga="git $ga"
+#done
 
 # Python {{{1
 # ======
@@ -137,6 +152,9 @@ alias ism3=isympy3
 alias pytest='py.test'
 alias pytest2='py.test-2.7'
 alias pytest3='py.test-3.4'
+alias pdb='python -m ipdb'
+alias pdb2='python2 -m ipdb'
+alias pdb3='python3 -m ipdb'
 
 # Sometimes I want to run small snippets of python code without launching the 
 # entire interpreter.  Usually this is either to do a bit of arithmetic (pxp) 
@@ -176,6 +194,8 @@ alias rd='rdt_doxygen'
 
 # Other Applications {{{1
 # ==================
+alias 2c=two_cents
+alias av=avendesora
 alias abiword='fork abiword'
 alias chemdraw='fork gchempaint'
 alias dia='fork dia'
@@ -184,10 +204,13 @@ alias exfalso='fork exfalso'
 alias firefox='fork firefox'
 alias gimp='fork gimp'
 alias gnumeric='fork gnumeric'
+alias glycerol_stocks='fork gnumeric ~/research/glycerol_stock_inventory.xml'
+alias plasmids='fork gnumeric ~/research/plasmid_inventory.xml'
+alias gparted='sudo gparted'
 alias gtkpod='fork gtkpod'
 alias img='fork gpicview'
-alias imagej='fork /home/kale/research/software/third_party/fiji/ImageJ-linux64'
 alias libreoffice='fork libreoffice'
+alias lyx='fork lyx'
 alias mendeley='fork /home/kale/research/software/projects/mendeley/bin/mendeleydesktop'
 alias mysql-workbench='fork mysql-workbench'
 alias pithos='fork pithos'
@@ -198,12 +221,20 @@ alias rhythmbox='fork rhythmbox'
 alias sakura='fork sakura'
 alias scribus='fork scribus'
 alias skype='fork skype'
-alias snapgene='fork /opt/gslbiotech/snapgene/snapgene.sh'
-alias snapgene-viewer='fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh'
 alias sqliteman='fork sqliteman'
 alias thunderbird='fork thunderbird'
 alias vlc='fork vlc'
 alias zotero='fork ~/hacking/third_party/zotero/run-zotero.sh'
+
+function imagej () {
+    fork /home/kale/research/software/third_party/fiji/ImageJ-linux64 $(realpath $1)
+}
+function snapgene () {
+    fork /opt/gslbiotech/snapgene/snapgene.sh $(realpath $1)
+}
+function snapgene-viewer () {
+    fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh $(realpath $1)
+}
 
 # The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
 # because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
@@ -228,6 +259,10 @@ function two_cents () {
 # as a shell function instead.  (I would have written it as a one-liner, but 
 # that confuses bash.)
 
+function za () {
+    fork zathura $@
+}
+
 function zathura () {
     fork zathura $@
 }
@@ -236,9 +271,16 @@ function evince () {
     fork evince $@
 }
 
-function inkscape () {
-    fork inkscape $@
-}
+function inkscape () {(
+    # Inkscape expects python to be python2, so remove my python3 from the PATH
+    export PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin
+    ~/.shell/scripts/fork inkscape $@
+)}
+
+function libcirc {} { (
+    cd ~/kxgames/third_party/liberation-circuit-1.0/bin
+    ./libcirc
+) }
 
 # If nautilus is not given an argument, run it on the current working directory 
 # instead of the home directory.
