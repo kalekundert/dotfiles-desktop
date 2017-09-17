@@ -21,12 +21,23 @@ if [ "$EUID" -ne 0 ]; then
         bumpversion             \
         cookiecutter            \
         docopt                  \
+        docutils                \
         ipython                 \
+        jupyter                 \
         know_its_ok             \
+        fn                      \
+        matplotlib              \
         more_itertools          \
+        natsort                 \
         nonstdlib               \
+        numpy                   \
+        pandas                  \
         pytest                  \
         pytest_cov              \
+        python-gnupg            \
+        pyyaml                  \
+        scipy                   \
         sh                      \
+        sympy                   \
 
 fi

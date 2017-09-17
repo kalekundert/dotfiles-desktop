@@ -7,13 +7,24 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         "@C Development Tools and Libraries"                \
         ack                                                 \
         acpi                                                \
+        autofs                                              \
         calibre                                             \
+        duplicity                                           \
         firefox                                             \
         fuse-sshfs                                          \
+        gimp                                                \
         gnumeric                                            \
         htop                                                \
+        hub                                                 \
+        inkscape                                            \
+        lapack-devel                                        \
         libreoffice                                         \
+        libreoffice-TexMaths                                \
+        lxrandr                                             \
+        mailx                                               \
         pithos                                              \
+        pstoedit                                            \
+        pymol                                               \
         python3-devel                                       \
         python3-scipy                                       \
         python3-matplotlib                                  \
@@ -22,12 +33,15 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         python3-virtualenv                                  \
         qiv                                                 \
         sakura                                              \
+        sendmail                                            \
+        scribus                                             \
         scrot                                               \
         thunderbird                                         \
         thunderbird-enigmail                                \
         thunderbird-lightning-gdata                         \
         vim-enhanced                                        \
         vim-X11                                             \
+        vlc                                                 \
         xbacklight                                          \
         xorg-x11-server-Xvfb                                \
         zathura                                             \
