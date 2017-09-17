@@ -1,0 +1,5 @@
+try: from fn import _
+except ImportError: pass
+
+try: from pylab import *
+except ImportError: pass
