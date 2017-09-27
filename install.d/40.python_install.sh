@@ -38,6 +38,7 @@ if [ "$EUID" -ne 0 ]; then
         pyyaml                  \
         scipy                   \
         sh                      \
+        sphinx                  \
         sympy                   \
 
 fi

@@ -1,1 +1,14 @@
-/home/kale/personal
+- /home/kale/personal/tv
+- /home/kale/hacking/third_party
+- /home/kale/research/software/rosetta
+- /home/kale/research/software/third_party
+
+- **/source/build
+- **/source/cmake
+
++ /home/kale/hacking
++ /home/kale/kxgames
++ /home/kale/personal
++ /home/kale/research
+
+- *
