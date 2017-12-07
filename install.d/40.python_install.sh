@@ -6,39 +6,49 @@ if [ "$EUID" -ne 0 ]; then
 
     # Make python2 and python3 virtual environments.
 
-    if [ ! -e ~/.local/bin/python2 ]; then
-        virtualenv --python=python2 --system-site-packages ~/.local
-    fi
+    function pyslug () {
+        $1 -c 'import sys; sys.stdout.write("python{0[0]}{0[1]}\n".format(sys.version_info))'
+    }
+    function pydir () {
+        echo "$HOME/.virtualenvs/$(pyslug $1)"
+    }
+    function mkvenv () {
+        venv=$(pydir $1)
+        if [ ! -d $venv ]; then
+            virtualenv-3 --python=$1 --system-site-packages $venv
+        fi
+    }
 
-    if [ ! -e ~/.local/bin/python3 ]; then
-        virtualenv --python=python3 --system-site-packages ~/.local
-    fi
+    mkvenv python2
+    mkvenv python3
 
     # Install useful packages.
 
-    ~/.local/bin/pip3 install   \
-         --upgrade pip          \
-        bumpversion             \
-        cookiecutter            \
-        docopt                  \
-        docutils                \
-        ipython                 \
-        jupyter                 \
-        know_its_ok             \
-        fn                      \
-        matplotlib              \
-        more_itertools          \
-        natsort                 \
-        nonstdlib               \
-        numpy                   \
-        pandas                  \
-        pytest                  \
-        pytest_cov              \
-        python-gnupg            \
-        pyyaml                  \
-        scipy                   \
-        sh                      \
-        sphinx                  \
-        sympy                   \
+    $(pydir python3)/bin/pip3 install   \
+         --upgrade pip                  \
+        bumpversion                     \
+        cookiecutter                    \
+        docopt                          \
+        docutils                        \
+        ipython                         \
+        jupyter                         \
+        know_its_ok                     \
+        fn                              \
+        matplotlib                      \
+        more_itertools                  \
+        natsort                         \
+        nonstdlib                       \
+        numpy                           \
+        pandas                          \
+        pytest                          \
+        pytest_cov                      \
+        python-gnupg                    \
+        pyyaml                          \
+        regex                           \
+        scipy                           \
+        sh                              \
+        sphinx                          \
+        sympy                           \
+        xonsh                           \
 
 fi
