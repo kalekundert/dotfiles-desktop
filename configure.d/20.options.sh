@@ -5,9 +5,6 @@ if [ $THIS_SHELL = zsh ]; then
     # Enable vim-like line editing.
     bindkey -v
 
-    # Enable some smart cd features.
-    setopt auto_cd
-
     # Don't allow '>' to clobber files.
     setopt no_clobber
 
@@ -25,7 +22,7 @@ if [ $THIS_SHELL = zsh ]; then
 
     # If you're having trouble adding a new completion file, try removing 
     # '~/.zcompdump'.  This is a cache file for the completion system, and when 
-    # it gets out of date nothing sems to work.
+    # it gets out of date nothing seems to work.
     
     # Here's a good article on how to write and use completion functions:
     # https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
