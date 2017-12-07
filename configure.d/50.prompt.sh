@@ -77,7 +77,8 @@ function precmd {
 
     # Set the title of the terminal window to be the same as the prompt.
 
-    #print -Pn "\e]0;$prompt\a"
+    title="\e]0;${PWD/#"$HOME"/~}\a"
+    echo -ne "$title"
 
     # The following logic adds the current git branch to the prompt, when in a 
     # git repository.  It may not work on headless branches, unfortunately.
