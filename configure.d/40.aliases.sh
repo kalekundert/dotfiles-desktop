@@ -138,6 +138,8 @@ alias gpu='git pull && git push'
 alias gs='git status'
 alias gu='git pull'
 
+alias bfg='java -jar ~/hacking/third_party/bfg-1.12.16.jar'
+
 # Iterate through all the git aliases and make corresponding shell aliases.
 #for ga in $(git config -l | grep \^alias | cut -d. -f2 | cut -d= -f1); do
     #alias g$ga="git $ga"
