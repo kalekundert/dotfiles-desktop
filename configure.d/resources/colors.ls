@@ -96,7 +96,7 @@ SETUID 00;35    # file that is setuid (u+s)
 SETGID 00;35    # file that is setgid (g+s)
 STICKY 00;35    # dir with the sticky bit set (+t) and not other-writable
 CAPABILITY 00;35    # file with capability
-MULTIHARDLINK 00        # regular file with more than one link
+MULTIHARDLINK 00;36        # regular file with more than one link
 OTHER_WRITABLE 00;34    # dir that is other-writable (o+w) and not sticky
 STICKY_OTHER_WRITABLE 00;35 # dir that is sticky and other-writable (+t,o+w)
 
