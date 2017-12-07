@@ -15,6 +15,7 @@ if [ $EUID -ne 0 ]; then
     ln -nsf $INSTALL_DIR/resources/backuprc ~/.backuprc
     ln -nsf $INSTALL_DIR/resources/cookiecutterrc ~/.cookiecutterrc
     ln -nsf $INSTALL_DIR/resources/gitignore ~/.gitignore
+    ln -nsf $INSTALL_DIR/resources/gmrunrc ~/.gmrunrc
     ln -nsf $INSTALL_DIR/resources/inputrc ~/.inputrc
     ln -nsf $INSTALL_DIR/resources/pypirc ~/.pypirc
     ln -nsf $INSTALL_DIR/resources/pythonrc ~/.pythonrc
@@ -22,6 +23,7 @@ if [ $EUID -ne 0 ]; then
     ln -nsf $INSTALL_DIR/resources/user-dirs.dirs ~/.config/
     ln -nsf $INSTALL_DIR/resources/user-dirs.locale ~/.config/
 
-else
-    ln -nsf $INSTALL_DIR/resources/auto.sshfs /etc/auto.sshfs
+#else
+    # Update fstab...
+    # Update sudoers...
 fi
