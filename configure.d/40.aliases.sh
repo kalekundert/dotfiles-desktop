@@ -12,6 +12,7 @@ alias date='\date +"%A, %B %-d%n%-I:%M %p"'
 alias which='/bin/which'
 alias where='whereis'
 alias len='wc -c'
+alias ,ale=make
 
 alias cd..='cd ..'
 alias pu='pushd'
@@ -95,6 +96,9 @@ alias zln='noglob zmv -W -p ln'
 # Vim {{{1
 # ===
 alias vi='vim'
+alias v='gvim'
+alias g='gvim'
+alias gv='gvim'
 alias m='gvim'
 alias givm='gvim'
 alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
@@ -123,6 +127,7 @@ alias gcam='git commit --amend --verbose'
 alias gc='git commit --verbose'
 alias gdc='git diff --cached'
 alias gd='git diff'
+alias gdw='git diff --word-diff'
 alias gk='git checkout'
 alias gkb='git checkout -b'
 alias gl='git log --oneline --decorate'
@@ -202,6 +207,7 @@ alias dia='fork dia'
 alias eog='fork eog'
 alias exfalso='fork exfalso'
 alias firefox='fork firefox'
+alias chrome='fork google-chrome-stable'
 alias gimp='fork gimp'
 alias gnumeric='fork gnumeric'
 alias glycerol_stocks='fork gnumeric ~/research/glycerol_stock_inventory.xml'
@@ -277,10 +283,10 @@ function inkscape () {(
     ~/.shell/scripts/fork inkscape $@
 )}
 
-function libcirc {} { (
+function libcirc () {(
     cd ~/kxgames/third_party/liberation-circuit-1.0/bin
     ./libcirc
-) }
+)}
 
 # If nautilus is not given an argument, run it on the current working directory 
 # instead of the home directory.
