@@ -1,5 +1,45 @@
-try: from fn import _
+#!/usr/bin/env python3
+
+# Import some useful names.
+import sys, os, re
+import itertools as it
+from math import *
+from pprint import pprint as pp
+
+try: import more_itertools as mi
 except ImportError: pass
 
-try: from pylab import *
+try: import sh
 except ImportError: pass
+
+# Enable tab completion
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    if 'libedit' in readline.__doc__:
+        readline.parse_and_bind("bind ^I rl_complete")
+    else:
+        readline.parse_and_bind("tab: complete")
+
+# Make it seem like the expensive scientific libraries are imported without 
+# actually importing them until they're used.
+
+class LazyImporter(object):
+
+    def __init__(self, module):
+        self.module = module
+
+    def __getattribute__(self, attr):
+        import importlib
+        modname = object.__getattribute__(self, 'module')
+        module = importlib.import_module(modname)
+        return getattr(module, attr)
+
+
+
+np = LazyImporter('numpy')
+pd = LazyImporter('pandas')
+plt = LazyImporter('matplotlib.pyplot')
