@@ -4,6 +4,7 @@
 import sys, os, re
 import itertools as it
 from math import *
+from pathlib import Path
 from pprint import pprint as pp
 
 try: import more_itertools as mi
@@ -24,8 +25,9 @@ else:
     else:
         readline.parse_and_bind("tab: complete")
 
-# Make it seem like the expensive scientific libraries are imported without 
-# actually importing them until they're used.
+# Make it seem like the big scientific libraries are imported without actually 
+# importing them until they're used (because they each can take a few seconds 
+# to import).
 
 class LazyImporter(object):
 
