@@ -1,6 +1,6 @@
 export THIS_SHELL=`ps --no-headers --format comm $$`
 
-if [ $THIS_SHELL = zsh ]; then
+if [ "$THIS_SHELL" = zsh ]; then
 
     # Enable vim-like line editing.
     bindkey -v

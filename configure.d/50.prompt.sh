@@ -12,7 +12,7 @@
 # that gets used will depend on the role of this machine.  Note that these
 # colors will only work in fairly modern terminals.
 
-if [ $THIS_SHELL = zsh ]; then
+if [ "$THIS_SHELL" = zsh ]; then
     normal=$'%{\e[0m%}'
     black=$'%{\e[0;30m%}'
     white=$'%{\e[0;37m%}'
@@ -23,7 +23,7 @@ if [ $THIS_SHELL = zsh ]; then
     purple=$'%{\e[0;35m%}'
     cyan=$'%{\e[0;36m%}'
 
-elif [ $THIS_SHELL = bash ]; then
+elif [ "$THIS_SHELL" = bash ]; then
     normal=$'\[\e[0m\]'
     black=$'\[\e[0;30m\]'
     white=$'\[\e[0;37m\]'
@@ -45,13 +45,13 @@ remote_color=$blue
 USER=`whoami`
 HOST=`hostname`
 
-if [ $THIS_SHELL = zsh ]; then
+if [ "$THIS_SHELL" = zsh ]; then
     [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c]'
     [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %m:'
     [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c] %n:'
     [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %n@%m:'
 
-elif [ $THIS_SHELL = bash ]; then
+elif [ "$THIS_SHELL" = bash ]; then
     [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W]'
     [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[\W] \h:'
     [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W] \u:'
@@ -61,8 +61,8 @@ fi
 # Choose a color and a prompt string.  Both of these decisions depend on which
 # user is logged in and where they are logged in from.
 
-[ $HOST = $HOME_HOST ] && color=$user_color || color=$remote_color
-[ $USER = 'root' ] && color=$admin_color
+[ "$HOST" = "$HOME_HOST" ] && color=$user_color || color=$remote_color
+[ "$USER" = 'root' ] && color=$admin_color
 
 # Set the two variables that are used to display the prompt.
 
