@@ -1,22 +1,16 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import sys
-import argparse
+import sys, shutil
 
-parser = argparse.ArgumentParser()
-parser.add_argument('columns', nargs='?', type=int, default=80)
-arguments = parser.parse_args()
+columns = shutil.get_terminal_size().columns
 
-for counter in range(arguments.columns):
-    tens, ones = '%02d' % counter
-    sys.stdout.write(tens if ones == '0' else ' ')
+tens = [' ' for i in range(columns)]
+ones = ['1234567890'[i%10] for i in range(columns)]
 
-print
+for i in range(columns):
+    if ones[i] == '0':
+        for j, digit in enumerate(str(i // 10 + 1)):
+            tens[i+j] = digit
 
-for counter in range(arguments.columns):
-    tens, ones = '%02d' % counter
-    sys.stdout.write(ones)
-
-print
-
-
+print(''.join(tens))
+print(''.join(ones))
