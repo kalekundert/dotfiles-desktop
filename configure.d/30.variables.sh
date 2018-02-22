@@ -23,7 +23,8 @@ add_dir_to_path ~/.shell/scripts
 add_subdirs_to_path ~/.virtualenvs -maxdepth 2 -wholename '*python??/bin'
 
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=qutebrowser
+export PDF=zathura
 
 eval $(dircolors ~/.shell/configure.d/resources/colors.ls)
 
