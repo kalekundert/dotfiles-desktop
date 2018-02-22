@@ -37,6 +37,10 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         pinentry-gtk                                        \
         pstoedit                                            \
         pymol                                               \
+        pygtk2                                              \
+        pygtk2-devel                                        \
+        python2-matplotlib                                  \
+        python2-matplotlib-gtk                              \
         python3-devel                                       \
         python3-scipy                                       \
         python3-matplotlib                                  \
@@ -59,6 +63,14 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         zathura                                             \
         zathura-plugins-all                                 \
         zsh                                                 \
+
+    # pygtk2, pygtk2-devel, python2-matplotlib, and python2-matplotlib-gtk are 
+    # installed so that pygtk will work with python2 (pygtk is notoriously 
+    # impossible to install via pip).  The python2 virtualenv that will be 
+    # created in the next script will be configured to use system 
+    # site-packages.  I'm pretty sure that if you were to install matplotlib 
+    # from PyPI for that python2, pygtk would no longer work, but fortunately 
+    # pip won't do that unless you pass a special flag.
 
     # Get Microsoft fonts (for snapgene)
     sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
