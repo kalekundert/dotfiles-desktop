@@ -333,3 +333,8 @@ alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
 alias pg='ping google.com'
 alias pk='ping kxgames.net'
 
+if [ $(hostname) != "chef.compbio.ucsf.edu" -a $(hostname) != "iq218" ]; then
+    alias qstat="ssh chef 'source /etc/profile && /usr/local/sge/bin/linux-x86/qstat'"
+    alias qtop="ssh chef 'source /etc/profile && ~/.local.32/bin/qtop'"
+fi
+
