@@ -1,9 +1,10 @@
 # General Utilities {{{1
 # =================
-alias edit_aliases='gvim ~/.shell/configure.d/40.aliases.sh'
+alias edal='vim ~/.shell/configure.d/40.aliases.sh && source ~/.zshrc'
 alias xx='exec $SHELL'
 alias xrc='source ~/.zshrc'
 alias quit='exit'
+alias logout='gnome-session-quit --logout --force'
 alias xsu='exec su'
 alias simon-says='sudo'
 alias top='\top -u $USER'
