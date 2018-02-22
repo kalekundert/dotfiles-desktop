@@ -32,7 +32,9 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         lxrandr                                             \
         lxtask                                              \
         mailx                                               \
+        mercurial                                           \
         ncurses-devel                                       \
+        openbox                                             \
         pithos                                              \
         pinentry-gtk                                        \
         pstoedit                                            \
@@ -47,6 +49,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         python3-numpy                                       \
         python3-pandas                                      \
         python3-virtualenv                                  \
+        qutebrowser                                         \
         sakura                                              \
         sendmail                                            \
         scribus                                             \
@@ -55,6 +58,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         thunderbird                                         \
         thunderbird-enigmail                                \
         thunderbird-lightning-gdata                         \
+        util-linux-user                                     \
         vim-enhanced                                        \
         vim-X11                                             \
         vlc                                                 \
