@@ -33,7 +33,6 @@ export CXX=/bin/clang++
 export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 #export MANPATH=~/.local/man:~/.local/share/man
-#export PYTHONPATH=~/research/software/third_party/imp/build/lib
 export PYTHONSTARTUP=~/.pythonrc
 export CLASSPATH=.:./bin/:usr/share/java:/home/kale/hacking/third_party:/home/kale/hacking/projects/android-sdk/tools
 export TEXINPUTS=~/hacking/config/latex:
@@ -48,3 +47,5 @@ export GPG_TTY=`tty`
 source ~/.virtualenvs/python36/bin/virtualenvwrapper.sh
 export WORKON_DIR=~/.virtualenvs
 
+export ROSETTA=~/rosetta/master
+export ROSETTA_BUILD=linuxgccrelease
