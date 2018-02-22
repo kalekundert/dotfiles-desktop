@@ -242,10 +242,13 @@ alias gparted='sudo gparted'
 alias gtkpod='fork gtkpod'
 alias img='fork gpicview'
 alias libreoffice='fork libreoffice'
+alias lo='fork libreoffice'
 alias lyx='fork lyx'
 alias mendeley='fork /home/kale/research/software/projects/mendeley/bin/mendeleydesktop'
 alias mysql-workbench='fork mysql-workbench'
 alias pithos='fork pithos'
+alias pymol='fork pymol -qx'
+alias pymol-tk='fork pymol -q'
 alias pyspread='fork pyspread'
 alias qiv='fork qiv'
 alias quodlibet='fork quodlibet'
@@ -256,7 +259,7 @@ alias skype='fork skype'
 alias sqliteman='fork sqliteman'
 alias thunderbird='fork thunderbird'
 alias vlc='fork vlc'
-alias zotero='fork ~/hacking/third_party/zotero/run-zotero.sh'
+alias civ='steam steam://rungameid/8930'
 
 function imagej () {
     fork /home/kale/research/software/third_party/fiji/ImageJ-linux64 $(realpath $1)
@@ -267,13 +270,6 @@ function snapgene () {
 function snapgene-viewer () {
     fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh $(realpath $1)
 }
-
-# The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
-# because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
-# that menu is desired.
-
-alias pymol='fork pymol -qx'
-alias pymol-tk='fork pymol -q'
 
 # I need a function to alias two_cents so I can provide the -D option only if 
 # no other arguments are specified.
@@ -308,6 +304,7 @@ function inkscape () {(
     export PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin
     ~/.shell/scripts/fork inkscape $@
 )}
+alias ink=inkscape
 
 function libcirc () {(
     cd ~/kxgames/third_party/liberation-circuit-1.0/bin
