@@ -15,7 +15,7 @@ if [ "$EUID" -ne 0 ]; then
     function mkvenv () {
         venv=$(pydir $1)
         if [ ! -d $venv ]; then
-            virtualenv-3 --python=$1 --system-site-packages $venv
+            virtualenv --python=$1 --system-site-packages $venv
         fi
     }
 

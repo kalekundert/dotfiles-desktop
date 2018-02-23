@@ -28,8 +28,8 @@ export PDF=zathura
 
 eval $(dircolors ~/.shell/configure.d/resources/colors.ls)
 
-export CC=/bin/clang
-export CXX=/bin/clang++
+export CC=$(which clang)
+export CXX=$(which clang++)
 export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 #export MANPATH=~/.local/man:~/.local/share/man
