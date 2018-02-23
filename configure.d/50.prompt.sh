@@ -44,12 +44,13 @@ remote_color=$blue
 
 USER=`whoami`
 HOST=`hostname`
+BR=$'\n'
 
 if [ "$THIS_SHELL" = zsh ]; then
-    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c]'
-    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %m:'
-    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[%c] %n:'
-    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt='[%c] %n@%m:'
+    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%<...<%~]$BR$"
+    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%m:%<...<%~]$BR$"
+    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%n:%<...<%~]$BR$"
+    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%n@%m:%<...<%~]$BR$"
 
 elif [ "$THIS_SHELL" = bash ]; then
     [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W]'
@@ -68,6 +69,7 @@ fi
 
 prePS1="$color$prompt$normal "
 PS1="$color$prompt$normal "
+PS2="${color}>${normal} "
 
 function precmd {
     
@@ -86,19 +88,26 @@ function precmd {
     branch=$(git symbolic-ref --short HEAD) &> /dev/null
 
     if [ $? = 0 ] && [ ! -e '.nobranch' ]; then
-        PS1=$(echo $prePS1 | sed "s:]:/$branch]:")
+        PS1=$(echo $prePS1 | sed "s:]: ±$branch]:")
     else
         PS1=$prePS1
     fi
+
+    date="%D{%b %-d, %-I:%M}"
+
+    acpi -V | grep 'off-line' > /dev/null
+    [ $? -eq 0 ] && batt="$(acpi | awk '{print $4}')%%" || batt=""
+
+    RPROMPT="$color$date$batt$normal"
 
     # The following three lines produce the size of the current prompt, 
     # accounting for all of the various escape codes.  I have no idea how it 
     # works.  If you really want to know, the manual page for `zshexpn' might 
     # be a good place to start looking.
 
-    local zero='%([BSUbfksu]|([FB]|){*})'
-    length=${#${(S%%)PS1//$~zero/}} 
-    padding=${(l.(($length - 4)).. .)}'...'
+    #local zero='%([BSUbfksu]|([FB]|){*})'
+    #length=${#${(S%%)PS1//$~zero/}} 
+    #padding=${(l.(($length - 4)).. .)}'...'
 
-    PS2="$color$padding$normal "
+    #PS2="$color$padding$normal "
 }
