@@ -48,4 +48,4 @@ source ~/.virtualenvs/python36/bin/virtualenvwrapper.sh
 export WORKON_DIR=~/.virtualenvs
 
 export ROSETTA=~/rosetta/master
-export ROSETTA_BUILD=linuxgccrelease
+export ROSETTA_BUILD=linuxclangrelease
