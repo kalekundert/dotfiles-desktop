@@ -49,3 +49,5 @@ export WORKON_DIR=~/.virtualenvs
 
 export ROSETTA=~/rosetta/master
 export ROSETTA_BUILD=linuxclangrelease
+
+export NINJA_STATUS="[%f/%t] [-j%r] "
