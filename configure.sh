@@ -13,7 +13,6 @@ RC_DIR=$(dirname $RC_PATH)
 CONFIG_DIR=$RC_DIR/configure.d
 
 for SCRIPT in $CONFIG_DIR/*.sh; do
-    echo $SCRIPT
     source $SCRIPT
 done
 
