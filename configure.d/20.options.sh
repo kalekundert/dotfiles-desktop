@@ -1,6 +1,4 @@
-export THIS_SHELL=`ps --no-headers --format comm $$`
-
-if [ "$THIS_SHELL" = zsh ]; then
+if [ "$THIS_SHELL" = "zsh" ]; then
 
     # Enable vim-like line editing.
     bindkey -v
@@ -12,13 +10,13 @@ if [ "$THIS_SHELL" = zsh ]; then
     setopt extended_glob
     setopt bare_glob_qual
 
-    fpath=(~/.shell/tab_completion $fpath)
+    fpath=($RC_PATH/tab_completion $fpath)
 
     # Enable fancy tab completion
     zstyle :compinstall filename '/home/kale/.zshrc'
     autoload -Uz bashcompinit && bashcompinit
     autoload -Uz compinit && compinit
-    autoload -U "~/.shell/tab_completion/*(:t)"
+    autoload -U "$RC_PATH/tab_completion/*(:t)"
 
     # If you're having trouble adding a new completion file, try removing 
     # '~/.zcompdump'.  This is a cache file for the completion system, and when 

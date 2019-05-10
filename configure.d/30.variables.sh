@@ -16,36 +16,35 @@ function add_subdirs_to_path () {
     fi
 }
 
-export PATH="/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin"
+# Adding to the path like this allows me to modify the PATH in host-specific
+# ways before this scripts runs.  The drawback is that updating $PATH requires
+# restarting the shell. 
+if [ -z "$PATH_LOADED" ]; then
+    export PATH_LOADED=1
 
-add_dir_to_path ~/.local/bin
-add_dir_to_path ~/.shell/scripts
-add_subdirs_to_path ~/.virtualenvs -maxdepth 2 -wholename '*python??/bin'
+    add_dir_to_path ~/.local/bin
+    add_dir_to_path ~/.local/bin/scripts
+    add_subdirs_to_path ~/.venv -maxdepth 2 -wholename '*python??/bin'
+
+    export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64:$LD_LIBRARY_PATH
+    export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:$PKG_CONFIG_PATH
+fi
 
 export EDITOR=vim
 export BROWSER=qutebrowser
 export PDF=zathura
 
-eval $(dircolors ~/.shell/configure.d/resources/colors.ls)
+eval $(dircolors $RC_DIR/configure.d/resources/colors.ls)
 
-export CC=$(which clang)
-export CXX=$(which clang++)
-export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64
-export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
-#export MANPATH=~/.local/man:~/.local/share/man
+export CC=$(which gcc)
+export CXX=$(which g++)
 export PYTHONSTARTUP=~/.pythonrc
-export CLASSPATH=.:./bin/:usr/share/java:/home/kale/hacking/third_party:/home/kale/hacking/projects/android-sdk/tools
-export TEXINPUTS=~/hacking/config/latex:
-export BSTINPUTS=~/hacking/config/latex:
 
 export AUTOSSH_PORT=21109
 export AUTOSSH_POLL=5
 export AUTOSSH_PIDFILE=~/.ssh/autossh.pid
 
 export GPG_TTY=`tty`
-
-source ~/.virtualenvs/python36/bin/virtualenvwrapper.sh
-export WORKON_DIR=~/.virtualenvs
 
 export ROSETTA=~/rosetta/master
 export ROSETTA_BUILD=linuxclangrelease

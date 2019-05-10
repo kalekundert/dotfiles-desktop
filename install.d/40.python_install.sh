@@ -10,7 +10,7 @@ if [ "$EUID" -ne 0 ]; then
         $1 -c 'import sys; sys.stdout.write("python{0[0]}{0[1]}\n".format(sys.version_info))'
     }
     function pydir () {
-        echo "$HOME/.virtualenvs/$(pyslug $1)"
+        echo "$HOME/.venv/$(pyslug $1)"
     }
     function mkvenv () {
         venv=$(pydir $1)

@@ -1,8 +1,8 @@
 # General Utilities {{{1
 # =================
-alias edal='vim ~/.shell/configure.d/40.aliases.sh && source ~/.zshrc'
-alias xx='exec $SHELL'
-alias xrc='source ~/.zshrc'
+alias xrc="source ~/.${THIS_SHELL}rc"
+alias edal="vim $RC_DIR/configure.d/40.aliases.sh && xrc"
+alias xx="exec $SHELL"
 alias quit='exit'
 alias logout='gnome-session-quit --logout --force'
 alias xsu='exec su'
