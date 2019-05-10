@@ -19,9 +19,9 @@ if [ $EUID -ne 0 ]; then
     ln -nsf $INSTALL_DIR/resources/backuprc ~/.backuprc
     ln -nsf $INSTALL_DIR/resources/cookiecutterrc ~/.cookiecutterrc
     ln -nsf $INSTALL_DIR/resources/gitignore ~/.gitignore
+    ln -nsf $INSTALL_DIR/resources/gitconfig ~/.gitconfig
     ln -nsf $INSTALL_DIR/resources/gmrunrc ~/.gmrunrc
     ln -nsf $INSTALL_DIR/resources/inputrc ~/.inputrc
-    ln -nsf $INSTALL_DIR/resources/pypirc ~/.pypirc
     ln -nsf $INSTALL_DIR/resources/pythonrc ~/.pythonrc
     ln -nsf $INSTALL_DIR/resources/sakura.conf ~/.config/sakura/
     ln -nsf $INSTALL_DIR/resources/user-dirs.dirs ~/.config/
