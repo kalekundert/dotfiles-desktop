@@ -47,10 +47,10 @@ HOST=`hostname`
 BR=$'\n'
 
 if [ "$THIS_SHELL" = zsh ]; then
-    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%<...<%~]$BR$"
-    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%m:%<...<%~]$BR$"
-    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%n:%<...<%~]$BR$"
-    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%n@%m:%<...<%~]$BR$"
+    [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%78<...<%~]$BR$"
+    [ $USER = $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%m:%78<...<%~]$BR$"
+    [ $USER != $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt="[%n:%78<...<%~]$BR$"
+    [ $USER != $HOME_USER ] && [ $HOST != $HOME_HOST ] && prompt="[%n@%m:%78<...<%~]$BR$"
 
 elif [ "$THIS_SHELL" = bash ]; then
     [ $USER = $HOME_USER ] && [ $HOST = $HOME_HOST ] && prompt='[\W]'
@@ -98,7 +98,7 @@ function precmd {
     acpi -V | grep 'off-line' > /dev/null
     [ $? -eq 0 ] && batt="$(acpi | awk '{print $4}')%%" || batt=""
 
-    RPROMPT="$color$date$batt$normal"
+    #RPROMPT="$color$date$batt$normal"
 
     # The following three lines produce the size of the current prompt, 
     # accounting for all of the various escape codes.  I have no idea how it 
