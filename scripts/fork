@@ -15,5 +15,3 @@ if os.fork() == 0:
     null = open(os.devnull, 'w')
     try: subprocess.call(sys.argv[1:], stdout=null, stderr=null)
     except OSError: print "Command '{}' not found.".format(sys.argv[1])
-
-

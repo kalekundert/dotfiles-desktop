@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+ssh chef 'source /etc/profile && /usr/local/sge/bin/linux-x86/qstat'
+

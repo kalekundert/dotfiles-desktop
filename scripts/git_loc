@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+
+"""\
+Count the lines of code (LOC) added by a certain author to the given git 
+repository.  Lines removed are not counted against the total.
+
+Usage:
+    git_loc <author> <repos>... [--exclude=PATTERN]...
+
+Options:
+    -x --exclude PATTERN
+        Don't count any repositories that match the given pattern
+
+Example:
+    git_loc "Kale Kundert" ~/rosetta/master
+"""
+
+import os, docopt, fnmatch
+import subprocess as sp
+from collections import Counter
+from pprint import pprint
+
+args = docopt.docopt(__doc__)
+counts = Counter()
+
+for repo in args['<repos>']:
+    print(f"Counting {repo}")
+
+    exclude = False
+    for pattern in args['--exclude']:
+        if pattern in repo:
+            print(f"  Excluding: contains '{pattern}'.")
+            exclude = True
+    if exclude:
+        continue
+
+    git_dir = os.path.join(repo, '.git')
+    if not os.path.exists(git_dir):
+        print(f"  Skipping: '{git_dir}' not found.")
+        continue
+
+    git = ('git',
+            '-C', repo,
+            'log',
+            '--author', args['<author>'],
+            '--pretty=tformat:',
+            '--numstat',
+    )
+    stdout = sp.run(git, encoding='utf8', stdout=sp.PIPE).stdout
+    repo_count = 0
+
+    for line in stdout.split('\n'):
+        if not line:
+            continue
+
+        try:
+            add, remove, path = line.split(None, 2);
+        except ValueError:
+            raise ValueError(f"error parsring line:\n'{line}'") from None
+
+        path = path.strip('}\n')
+        ext = os.path.splitext(path)[-1]
+
+        if add == '-': continue
+
+        counts[ext] += int(add)
+        repo_count += int(add)
+
+    print(f'  {repo_count} lines added.')
+
+pprint(counts)

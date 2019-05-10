@@ -10,5 +10,6 @@ fi
 git pull
 bumpversion $@
 git push && git push --tags
-./setup.py sdist upload
+./setup.py sdist
+twine upload dist/*
 

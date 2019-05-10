@@ -1,0 +1,1 @@
+sudo ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
