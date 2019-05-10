@@ -1,14 +1,13 @@
 # General Utilities {{{1
 # =================
-alias edal='vim ~/.shell/configure.d/40.aliases.sh && source ~/.zshrc'
+alias xx="exec $SHELL"
+alias xrc="source ~/.${THIS_SHELL}rc"
+alias edal="vim $RC_DIR/configure.d/40.aliases.sh && xrc"
 alias edvar='vim ~/.shell/configure.d/30.variables.sh && source ~/.zshrc'
 alias edvi='vim ~/.config/nvim/init.vim'
 alias edob='vim ~/.config/openbox/scripts/keyboard.py'
 alias reob='~/.config/openbox/reconfigure.sh'
 alias edav='vim ~/.config/avendesora/accounts.gpg && chmod 600 ~/.config/avendesora/accounts.gpg'
-
-alias xx='exec $SHELL'
-alias xrc='source ~/.zshrc'
 alias quit='exit'
 alias logout='gnome-session-quit --logout --force'
 alias xsu='exec su'
