@@ -1,6 +1,12 @@
 # General Utilities {{{1
 # =================
 alias edal='vim ~/.shell/configure.d/40.aliases.sh && source ~/.zshrc'
+alias edvar='vim ~/.shell/configure.d/30.variables.sh && source ~/.zshrc'
+alias edvi='vim ~/.config/nvim/init.vim'
+alias edob='vim ~/.config/openbox/scripts/keyboard.py'
+alias reob='~/.config/openbox/reconfigure.sh'
+alias edav='vim ~/.config/avendesora/accounts.gpg && chmod 600 ~/.config/avendesora/accounts.gpg'
+
 alias xx='exec $SHELL'
 alias xrc='source ~/.zshrc'
 alias quit='exit'
@@ -14,6 +20,7 @@ alias which='/bin/which'
 alias where='whereis'
 alias len='wc -c'
 alias ,ale=make
+alias catf='tail -v -n +1'
 
 alias cd..='cd ..'
 alias pu='pushd'
@@ -31,6 +38,7 @@ alias virt-manager='sudo virt-manager'
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown now'
 alias updatedb='sudo updatedb'
+alias powertop='sudo powertop'
 alias zzz='sudo pm-suspend'
 
 # In some directories, I like to have more control over what 'ls' displays.  
@@ -60,12 +68,14 @@ function ls () {
             --hide="*.nlo"                                                  \
             --hide="*.bbl"                                                  \
             --hide="*.blg"                                                  \
+            --hide="_minted-*"                                               \
             --hide="__pycache__"                                            \
             --hide="lost+found"                                             \
             --hide="autom4te.cache"                                         \
             --hide="Makefile.in"                                            \
             --hide="aclocal.m4"                                             \
             --hide="autom4te.cache"                                         \
+            --hide="databases-incognito"                                         \
             --hide="*.egg-info"
     fi
 }
@@ -94,31 +104,10 @@ alias zmv='noglob zmv -W'
 alias zcp='noglob zmv -W -p cp'
 alias zln='noglob zmv -W -p ln'
 
-# Vim {{{1
-# ===
-alias vi='vim'
-alias v='gvim'
-alias g='gvim'
-alias gv='gvim'
-alias m='gvim'
-alias givm='gvim'
-alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
-
-function gblog () {
-    gvim ~/personal/blog/content/$@
-}
-
-# I have a tendency to accidentally type these vim commands into the shell, and 
-# I don't like seeing the "command not found" errors that result.
-
-alias :w='true'
-alias :q='true'
-alias :wq='true'
-
-# Git {{{1
-# ===
+# g: Git {{{1
+# ======
 #alias git='hub'
-alias wgs='watch git status'
+alias wgs='watch --color "git -c color.status=always status"'
 
 alias ga='git add'
 alias gap='git add -p'
@@ -146,8 +135,8 @@ alias bfg='java -jar ~/hacking/third_party/bfg-1.12.16.jar'
     #alias g$ga="git $ga"
 #done
 
-# Exmemo {{{1
-# ======
+# e: Exmemo {{{1
+# =========
 alias en='exmemo note new'
 alias ee='exmemo note edit'
 alias eo='exmemo note open'
@@ -159,7 +148,8 @@ alias eps='exmemo protocol show'
 alias epp='exmemo protocol print'
 alias epe='exmemo protocol edit'
 alias epl='exmemo protocol ls'
-alias epf='exmemo protocol save'
+alias epr='exmemo protocol archive'
+alias edl='exmemo data ls'
 alias edy='exmemo data sync'
 alias edk='exmemo data link'
 alias edg='exmemo data gel'
@@ -168,6 +158,47 @@ function ed () {
     d=$(exmemo note directory "$@")
     [ $? = 0 ] && cd $d || echo $d  # Don't try to cd if something goes wrong.
 }
+
+# t: Todolist {{{1
+# ===========
+alias todo='todolist'
+alias tl='todolist l'
+alias tln='todolist ln'
+alias ta='todolist a'
+alias tan='todolist an'
+alias te='todolist e'
+alias ten='todolist en'
+alias td='todolist d'
+alias tdn='todolist dn'
+alias tx='todolist ex'
+alias tc='todolist c'
+alias tuc='todolist uc'
+alias tp='todolist p'
+alias tup='todolist up'
+alias tr='todolist ar'
+alias trc='todolist ac'
+alias tgc='todolist gc'
+
+# Vim {{{1
+# ===
+alias vim='nvim'
+alias gvim='fork nvim-gtk'
+alias vi='vim'
+alias v='gvim'
+alias m='gvim'
+alias givm='gvim'
+alias gvss='gvim +"set guifont=Monospace\ 18" +"set nospell"'
+
+function gblog () {
+    gvim ~/personal/blog/content/$@
+}
+
+# I have a tendency to accidentally type these vim commands into the shell, and 
+# I don't like seeing the "command not found" errors that result.
+
+alias :w='true'
+alias :q='true'
+alias :wq='true'
 
 # Python {{{1
 # ======
@@ -223,6 +254,9 @@ alias rr='rdt_build release'
 alias ru='rdt_unit_test'
 alias rd='rdt_doxygen'
 
+alias beautify_changed_files_in_branch="python2 ~/rosetta/tools/python_cc_reader/beautify_changed_files_in_branch.py"
+alias beautify_specific_files="python2 ~/rosetta/tools/python_cc_reader/beautify_specific_files.py"
+
 # Other Applications {{{1
 # ==================
 alias 2c=two_cents
@@ -236,8 +270,10 @@ alias firefox='fork firefox'
 alias chrome='fork google-chrome-stable'
 alias gimp='fork gimp'
 alias gnumeric='fork gnumeric'
-alias glycerol_stocks='fork gnumeric ~/research/glycerol_stock_inventory.xml'
-alias plasmids='fork gnumeric ~/research/plasmid_inventory.xml'
+alias glycerol_stocks='fork gnumeric ~/research/inventory/glycerol_stocks.xml'
+alias plasmids='fork gnumeric ~/research/inventory/plasmids.xml'
+alias masterpdf='fork masterpdfeditor4'
+alias handbrake='fork ghb'
 alias gparted='sudo gparted'
 alias gtkpod='fork gtkpod'
 alias img='fork gpicview'
@@ -260,12 +296,13 @@ alias sqliteman='fork sqliteman'
 alias thunderbird='fork thunderbird'
 alias vlc='fork vlc'
 alias civ='steam steam://rungameid/8930'
+alias latex-help='za /usr/share/texlive/texmf-dist/doc/latex/base/source2e.pdf'
 
 function imagej () {
     fork /home/kale/research/software/third_party/fiji/ImageJ-linux64 $(realpath $1)
 }
-function snapgene () {
-    fork /opt/gslbiotech/snapgene/snapgene.sh $(realpath $1)
+function snap () {
+    fork /opt/gslbiotech/snapgene/snapgene.sh $(realpath -m "$1")
 }
 function snapgene-viewer () {
     fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh $(realpath $1)
@@ -324,7 +361,6 @@ function nautilus () {
 
 # SSH and Networking {{{1
 # ==================
-alias ssh-alanine-proxy='ssh -fND 1080 alanine-proxy'
 alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
 
 alias pg='ping google.com'
