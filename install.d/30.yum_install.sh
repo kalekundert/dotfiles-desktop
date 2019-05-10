@@ -1,6 +1,8 @@
 if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
     echo "Please provide a sudo password to install packages:"
     sudo dnf update -y
+    sudo dnf remove -y                                      \
+        PackageKit-command-not-found
     sudo dnf install -y                                     \
         http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm          \
         http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -10,6 +12,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         "@C Development Tools and Libraries"                \
         ack                                                 \
         acpi                                                \
+        arandr                                              \
         autofs                                              \
         calibre                                             \
         clang                                               \
@@ -29,7 +32,8 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         lapack-devel                                        \
         libreoffice                                         \
         libreoffice-TexMaths                                \
-        lxrandr                                             \
+        lxsession                                           \
+        lyx                                                 \
         lxtask                                              \
         mailx                                               \
         mercurial                                           \
@@ -41,6 +45,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         pymol                                               \
         pygtk2                                              \
         pygtk2-devel                                        \
+        python-virtualenv
         python2-matplotlib                                  \
         python2-matplotlib-gtk                              \
         python3-devel                                       \

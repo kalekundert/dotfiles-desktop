@@ -1,2 +1,4 @@
 .*.sw*
 .lsrc
+*.pyc
+.pytest_cache

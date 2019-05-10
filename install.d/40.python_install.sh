@@ -26,13 +26,13 @@ if [ "$EUID" -ne 0 ]; then
 
     $(pydir python3)/bin/pip3 install   \
          --upgrade pip                  \
-        bumpversion                     \
+        bump2version                    \
         cookiecutter                    \
         docopt                          \
         docutils                        \
         ipython                         \
         jupyter                         \
-        know_its_ok                     \
+        keyring                         \
         fn                              \
         matplotlib                      \
         more_itertools                  \
@@ -40,6 +40,7 @@ if [ "$EUID" -ne 0 ]; then
         nonstdlib                       \
         numpy                           \
         pandas                          \
+        pygobject                       \
         pytest                          \
         pytest_cov                      \
         python-gnupg                    \
@@ -49,6 +50,7 @@ if [ "$EUID" -ne 0 ]; then
         sh                              \
         sphinx                          \
         sympy                           \
+        twine                           \
         xonsh                           \
 
 fi
