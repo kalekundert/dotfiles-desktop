@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # What It Does
 # ============
@@ -14,4 +14,4 @@ import subprocess
 if os.fork() == 0:
     null = open(os.devnull, 'w')
     try: subprocess.call(sys.argv[1:], stdout=null, stderr=null)
-    except OSError: print "Command '{}' not found.".format(sys.argv[1])
+    except OSError: print("Command '{}' not found.".format(sys.argv[1]))
