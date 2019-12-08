@@ -1,10 +1,12 @@
 # General Utilities {{{1
 # =================
-alias xx="exec $SHELL"
-alias xrc="source ~/.${THIS_SHELL}rc"
-alias edal="vim $RC_DIR/configure.d/40.aliases.sh && xrc"
-alias edvar="vim $RC_DIR/configure.d/30.variables.sh && xrc"
-alias edpkg="vim $RC_DIR/install.d/30.pacman_install.sh"
+alias xx="exec zsh"
+alias xrc="source ~/.zshrc"
+alias edal="vim $RC/zsh/aliases.zsh && xrc"
+alias edvar="vim $RC/zsh/variables.zsh && xrc"
+alias edpath="vim $RC/zsh/path.zsh && xrc"
+alias edpkg="vim $RC/bin/bump-arch"
+alias edpip="vim $RC/bin/bump-pip"
 alias edvi='vim ~/.config/nvim/init.vim'
 alias edob='vim ~/.config/openbox/scripts/keyboard.py'
 alias reob='~/.config/openbox/reconfigure.sh'
@@ -21,6 +23,9 @@ alias where='whereis'
 alias len='wc -c'
 alias ,ale=make
 alias catf='tail -v -n +1'
+alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
+alias pg='ping google.com'
+alias pk='ping kxgames.net'
 
 alias cd..='cd ..'
 alias pu='pushd'
@@ -104,82 +109,6 @@ alias zmv='noglob zmv -W'
 alias zcp='noglob zmv -W -p cp'
 alias zln='noglob zmv -W -p ln'
 
-# g: Git {{{1
-# ======
-#alias git='hub'
-alias wgs='watch --color "git -c color.status=always status"'
-
-alias ga='git add'
-alias gap='git add -p'
-alias gb='git branch'
-alias gca='git commit --all --verbose'
-alias gcam='git commit --amend --verbose'
-alias gc='git commit --verbose'
-alias gdc='git diff --cached'
-alias gd='git diff'
-alias gdw='git diff --word-diff'
-alias gk='git checkout'
-alias gkb='git checkout -b'
-alias gl='git log --oneline --decorate'
-alias gld='git log -u'
-alias glv='git log'
-alias gp='git push'
-alias gpu='git pull && git push'
-alias gs='git status'
-alias gu='git pull'
-
-alias bfg='java -jar ~/hacking/third_party/bfg-1.12.16.jar'
-
-# Iterate through all the git aliases and make corresponding shell aliases.
-#for ga in $(git config -l | grep \^alias | cut -d. -f2 | cut -d= -f1); do
-    #alias g$ga="git $ga"
-#done
-
-# e: Exmemo {{{1
-# =========
-alias en='exmemo note new'
-alias ee='exmemo note edit'
-alias eo='exmemo note open'
-alias eb='exmemo note build'
-alias el='exmemo note ls'
-alias ew='exmemo note browse'
-alias eww='exmemo note browse -w'
-alias eps='exmemo protocol show'
-alias epp='exmemo protocol print'
-alias epe='exmemo protocol edit'
-alias epl='exmemo protocol ls'
-alias epr='exmemo protocol archive'
-alias edl='exmemo data ls'
-alias edy='exmemo data sync'
-alias edk='exmemo data link'
-alias edg='exmemo data gel'
-
-function ed () {
-    d=$(exmemo note directory "$@")
-    [ $? = 0 ] && cd $d || echo $d  # Don't try to cd if something goes wrong.
-}
-
-# t: Todolist {{{1
-# ===========
-alias todo='todolist'
-alias tl='todolist l by p'
-alias tll='todolist l agenda'
-alias tln='todolist ln'
-alias ta='todolist a'
-alias tan='todolist an'
-alias te='todolist e'
-alias ten='todolist en'
-alias td='todolist d'
-alias tdn='todolist dn'
-alias tx='todolist ex'
-alias tc='todolist c'
-alias tuc='todolist uc'
-alias tp='todolist p'
-alias tup='todolist up'
-alias tr='todolist ar'
-alias trc='todolist ac'
-alias tgc='todolist gc'
-
 # Vim {{{1
 # ===
 alias vim='nvim'
@@ -246,17 +175,6 @@ alias pxh="noglob pxh"
 alias ja='java -ea'
 alias jc='javac -g'
 alias ju='java org.junit.runner.JUnitCore'
-
-# Rosetta {{{1
-# =======
-alias rk='rdt_stub'
-alias rb='rdt_build debug'
-alias rr='rdt_build release'
-alias ru='rdt_unit_test'
-alias rd='rdt_doxygen'
-
-alias beautify_changed_files_in_branch="python2 ~/rosetta/tools/python_cc_reader/beautify_changed_files_in_branch.py"
-alias beautify_specific_files="python2 ~/rosetta/tools/python_cc_reader/beautify_specific_files.py"
 
 # Other Applications {{{1
 # ==================
@@ -373,16 +291,4 @@ function nautilus () {
         fork nautilus
     fi
 }
-
-# SSH and Networking {{{1
-# ==================
-alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
-
-alias pg='ping google.com'
-alias pk='ping kxgames.net'
-
-if [ $(hostname) != "chef.compbio.ucsf.edu" -a $(hostname) != "iq218" ]; then
-    alias qstat="ssh chef 'source /etc/profile && /usr/local/sge/bin/linux-x86/qstat'"
-    alias qtop="ssh chef 'source /etc/profile && ~/.local.32/bin/qtop'"
-fi
 
