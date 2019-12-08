@@ -3,7 +3,8 @@
 alias xx="exec $SHELL"
 alias xrc="source ~/.${THIS_SHELL}rc"
 alias edal="vim $RC_DIR/configure.d/40.aliases.sh && xrc"
-alias edvar='vim ~/.shell/configure.d/30.variables.sh && source ~/.zshrc'
+alias edvar="vim $RC_DIR/configure.d/30.variables.sh && xrc"
+alias edpkg="vim $RC_DIR/install.d/30.pacman_install.sh"
 alias edvi='vim ~/.config/nvim/init.vim'
 alias edob='vim ~/.config/openbox/scripts/keyboard.py'
 alias reob='~/.config/openbox/reconfigure.sh'
@@ -27,10 +28,10 @@ alias po='popd'
 alias back='cd ~-'
 alias here='cd -P .'
 
-alias network='fork wicd-client -n'
-alias monitor='fork lxrandr'
+alias monitor='fork arandr'
 
 alias yum='sudo dnf'
+alias pacman='sudo pacman'
 alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-get'
 alias virt-manager='sudo virt-manager'
@@ -161,7 +162,8 @@ function ed () {
 # t: Todolist {{{1
 # ===========
 alias todo='todolist'
-alias tl='todolist l'
+alias tl='todolist l by p'
+alias tll='todolist l agenda'
 alias tln='todolist ln'
 alias ta='todolist a'
 alias tan='todolist an'
@@ -263,11 +265,13 @@ alias av=avendesora
 alias abiword='fork abiword'
 alias chemdraw='fork gchempaint'
 alias dia='fork dia'
-alias eog='fork eog'
+alias eom='fork eom'
+alias fonts='fork gnome-specimen'
 alias exfalso='fork exfalso'
 alias firefox='fork firefox'
 alias chrome='fork google-chrome-stable'
 alias gimp='fork gimp'
+alias xls='fork gnumeric'
 alias gnumeric='fork gnumeric'
 alias glycerol_stocks='fork gnumeric ~/research/inventory/glycerol_stocks.xml'
 alias plasmids='fork gnumeric ~/research/inventory/plasmids.xml'
@@ -296,15 +300,27 @@ alias thunderbird='fork thunderbird'
 alias vlc='fork vlc'
 alias civ='steam steam://rungameid/8930'
 alias latex-help='za /usr/share/texlive/texmf-dist/doc/latex/base/source2e.pdf'
+alias snap='snapgene'
 
 function imagej () {
+    # These Java options don't seem to really do anything, so they're here more 
+    # aspirationally than anything.
+    export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
     fork /home/kale/research/software/third_party/fiji/ImageJ-linux64 $(realpath $1)
 }
-function snap () {
-    fork /opt/gslbiotech/snapgene/snapgene.sh $(realpath -m "$1")
+function snapgene () {
+    if [ $# -ge 1 ]; then
+      fork snapgene $( realpath -m "$@")
+    else
+      fork snapgene
+    fi
 }
 function snapgene-viewer () {
-    fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh $(realpath $1)
+    if [ $# -ge 1 ]; then
+      fork snapgene-viewer $( realpath -m "$@")
+    else
+      fork snapgene-viewer
+    fi
 }
 
 # I need a function to alias two_cents so I can provide the -D option only if 
@@ -337,8 +353,8 @@ function evince () {
 
 function inkscape () {(
     # Inkscape expects python to be python2, so remove my python3 from the PATH
-    export PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin
-    ~/.shell/scripts/fork inkscape $@
+    #export PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin
+    fork inkscape $@
 )}
 alias ink=inkscape
 
