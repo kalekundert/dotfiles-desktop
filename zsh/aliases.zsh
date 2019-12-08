@@ -26,6 +26,7 @@ alias catf='tail -v -n +1'
 alias ssh-guybrush-proxy='ssh -fND 1080 guybrush-proxy'
 alias pg='ping google.com'
 alias pk='ping kxgames.net'
+alias path='echo $PATH | \tr ":" "\n" | nl'
 
 alias cd..='cd ..'
 alias pu='pushd'
