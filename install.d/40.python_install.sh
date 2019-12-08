@@ -19,38 +19,58 @@ if [ "$EUID" -ne 0 ]; then
         fi
     }
 
+    function editable() {
+      if [ -d $1 ]; then 
+        echo "-e $1"
+      fi
+    }
+
     mkvenv python2
     mkvenv python3
 
     # Install useful packages.
 
-    $(pydir python3)/bin/pip3 install   \
-         --upgrade pip                  \
-        bump2version                    \
-        cookiecutter                    \
-        docopt                          \
-        docutils                        \
-        ipython                         \
-        jupyter                         \
-        keyring                         \
-        fn                              \
-        matplotlib                      \
-        more_itertools                  \
-        natsort                         \
-        nonstdlib                       \
-        numpy                           \
-        pandas                          \
-        pygobject                       \
-        pytest                          \
-        pytest_cov                      \
-        python-gnupg                    \
-        pyyaml                          \
-        regex                           \
-        scipy                           \
-        sh                              \
-        sphinx                          \
-        sympy                           \
-        twine                           \
-        xonsh                           \
+    echo $(pydir python3)/bin/pip3 install                          \
+         --upgrade pip                                              \
+        bump2version                                                \
+        cookiecutter                                                \
+        docopt                                                      \
+        docutils                                                    \
+        ipython                                                     \
+        jupyter                                                     \
+        keyring                                                     \
+        fn                                                          \
+        more_itertools                                              \
+        natsort                                                     \
+        nonstdlib                                                   \
+        pygobject                                                   \
+        pytest                                                      \
+        pytest_cov                                                  \
+        python-gnupg                                                \
+        pyyaml                                                      \
+        regex                                                       \
+        scipy                                                       \
+        sh                                                          \
+        sphinx                                                      \
+        swifter                                                     \
+        sympy                                                       \
+        tdqm                                                        \
+        twine                                                       \
+        xonsh                                                       \
+        $(editable ~/hacking/projects/autoprop)                     \
+        $(editable ~/hacking/projects/avendesora)                   \
+        $(editable ~/hacking/projects/color_me)                     \
+        $(editable ~/hacking/projects/emborg)                       \
+        $(editable ~/hacking/projects/fossilize)                    \
+        $(editable ~/hacking/projects/inform)                       \
+        $(editable ~/hacking/projects/sparekeys)                    \
+        $(editable ~/research/software/projects/bio96)              \
+        $(editable ~/research/software/projects/dirty_water)        \
+        $(editable ~/research/software/projects/exmemo)             \
+        $(editable ~/research/software/projects/klab)               \
+        $(editable ~/research/software/projects/rosetta_dev_tools)  \
+        $(editable ~/research/software/projects/wet_copy)           \
+        $(editable ~/kxgames/libraries/vecrec)                      \
+        $(editable ~/kxgames/libraries/glooey)                      \
 
 fi
