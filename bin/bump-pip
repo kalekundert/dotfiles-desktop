@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -8,44 +8,47 @@ function editable() {
   fi
 }
 
-pip install                                                     \
-     --upgrade pip                                              \
-    bump2version                                                \
-    cookiecutter                                                \
-    docopt                                                      \
-    docutils                                                    \
-    ipython                                                     \
-    jupyter                                                     \
-    keyring                                                     \
-    fn                                                          \
-    more_itertools                                              \
-    natsort                                                     \
-    nonstdlib                                                   \
-    pygobject                                                   \
-    pytest                                                      \
-    pytest_cov                                                  \
-    python-gnupg                                                \
-    pyyaml                                                      \
-    regex                                                       \
-    scipy                                                       \
-    sh                                                          \
-    sphinx                                                      \
-    swifter                                                     \
-    sympy                                                       \
-    tdqm                                                        \
-    twine                                                       \
-    $(editable ~/hacking/projects/autoprop)                     \
-    $(editable ~/hacking/projects/avendesora)                   \
-    $(editable ~/hacking/projects/color_me)                     \
-    $(editable ~/hacking/projects/emborg)                       \
-    $(editable ~/hacking/projects/fossilize)                    \
-    $(editable ~/hacking/projects/inform)                       \
-    $(editable ~/hacking/projects/sparekeys)                    \
-    $(editable ~/research/software/projects/bio96)              \
-    $(editable ~/research/software/projects/dirty_water)        \
-    $(editable ~/research/software/projects/exmemo)             \
-    $(editable ~/research/software/projects/klab)               \
-    $(editable ~/research/software/projects/rosetta_dev_tools)  \
-    $(editable ~/research/software/projects/wet_copy)           \
-    $(editable ~/kxgames/libraries/vecrec)                      \
-    $(editable ~/kxgames/libraries/glooey)                      \
+pip install                                                          \
+     --upgrade pip                                                   \
+    bump2version                                                     \
+    cookiecutter                                                     \
+    docopt                                                           \
+    docutils                                                         \
+    ipython                                                          \
+    jupyter                                                          \
+    keyring                                                          \
+    fn                                                               \
+    matplotlib                                                       \
+    more_itertools                                                   \
+    natsort                                                          \
+    nonstdlib                                                        \
+    numpy                                                            \
+    pandas                                                           \
+    pygobject                                                        \
+    pytest                                                           \
+    pytest_cov                                                       \
+    python-gnupg                                                     \
+    pyyaml                                                           \
+    regex                                                            \
+    scipy                                                            \
+    sh                                                               \
+    sphinx                                                           \
+    swifter                                                          \
+    sympy                                                            \
+    tqdm                                                             \
+    twine                                                            \
+    ${(z)$(editable ~/hacking/projects/autoprop)}                    \
+    ${(z)$(editable ~/hacking/projects/avendesora)}                  \
+    ${(z)$(editable ~/hacking/projects/color_me)}                    \
+    ${(z)$(editable ~/hacking/projects/emborg)}                      \
+    ${(z)$(editable ~/hacking/projects/fossilize)}                   \
+    ${(z)$(editable ~/hacking/projects/inform)}                      \
+    ${(z)$(editable ~/hacking/projects/sparekeys)}                   \
+    ${(z)$(editable ~/research/software/projects/bio96)}             \
+    ${(z)$(editable ~/research/software/projects/dirty_water)}       \
+    ${(z)$(editable ~/research/software/projects/exmemo)}            \
+    ${(z)$(editable ~/research/software/projects/klab)}              \
+    ${(z)$(editable ~/research/software/projects/rosetta_dev_tools)} \
+    ${(z)$(editable ~/research/software/projects/wet_copy)}          \
+    ${(z)$(editable ~/kxgames/libraries/vecrec)}                     \
+    ${(z)$(editable ~/kxgames/libraries/glooey)}                     \

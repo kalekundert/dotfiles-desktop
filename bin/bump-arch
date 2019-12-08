@@ -38,11 +38,13 @@ sudo pacman -S \
   inkscape \
   libreoffice-extension-texmaths \
   libreoffice-fresh \
+  llvm7 \
   lyx \
   mercurial \
   mlocate \
   noto-fonts \
   openbox \
+  openmp \
   paps \
   pavucontrol \
   pinentry \
