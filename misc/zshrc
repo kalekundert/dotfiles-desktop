@@ -1,6 +1,9 @@
 export RC=$(dirname $(dirname $(realpath $(print -P %x))))
 source $RC/antigen/antigen.zsh
 
+antigen bundle $RC/zsh
+antigen bundle ~/hacking/projects/zsh-zmv
+
 antigen use oh-my-zsh
 
 antigen bundle compleat
@@ -24,9 +27,6 @@ antigen bundle unixorn/git-extra-commands
 antigen bundle peterhurford/git-it-on.zsh
 antigen bundle psprint/zsh-navigation-tools
 antigen bundle MichaelAquilina/zsh-you-should-use
-
-antigen bundle $RC/zsh
-antigen bundle ~/hacking/projects/zsh-zmv
 
 antigen theme bira
 
