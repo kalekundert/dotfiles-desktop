@@ -16,7 +16,6 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         autofs                                              \
         calibre                                             \
         clang                                               \
-        duplicity                                           \
         eom                                                 \
         firefox                                             \
         foomatic                                            \
@@ -45,7 +44,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         pymol                                               \
         pygtk2                                              \
         pygtk2-devel                                        \
-        python-virtualenv
+        python-virtualenv                                   \
         python2-matplotlib                                  \
         python2-matplotlib-gtk                              \
         python3-devel                                       \
