@@ -7,6 +7,7 @@ the following:
 - Configuring programs via rc files and environment variables.
 - Setting up aliases.
 
-Install using the following command::
-
+Install using the following command:
+```
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/kalekundert/rc/master/bootstrap.sh)"
+```
