@@ -13,3 +13,7 @@ git push && git push --tags
 ./setup.py sdist
 twine upload dist/*
 
+# Might have to clear out this directory, not sure...
+#rm -rf dist
+
+
