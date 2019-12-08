@@ -22,17 +22,20 @@ function add_subdirs_to_path () {
 if [ -z "$PATH_LOADED" ]; then
     export PATH_LOADED=1
 
-    add_dir_to_path /local/bin
+    #add_dir_to_path /local/bin
     add_dir_to_path ~/.local/bin
     add_dir_to_path ~/.local/lib/go/bin
     add_dir_to_path ~/.local/bin/scripts
+    add_dir_to_path ~/.local/bin/edirect
+    add_dir_to_path ~/.local/bin/ruby26
+    #add_dir_to_path ~/.gem/ruby/2.6.0/bin
     add_subdirs_to_path ~/.venv -maxdepth 2 -wholename '*python??/bin'
 
     export LD_LIBRARY_PATH=~/.local/lib:~/.local/lib64:$LD_LIBRARY_PATH
     export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:$PKG_CONFIG_PATH
 fi
 
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=qutebrowser
 export PDF=zathura
 
@@ -48,11 +51,10 @@ export AUTOSSH_PIDFILE=~/.ssh/autossh.pid
 
 export GPG_TTY=`tty`
 
-#source ~/.virtualenvs/python36/bin/virtualenvwrapper.sh
-#export WORKON_DIR=~/.virtualenvs
-
 export ROSETTA=~/rosetta/master
 export ROSETTA_BUILD=linuxclangrelease
 
 export NINJA_STATUS="[%f/%t] [-j%r] "
 export NVIM_GTK_NO_HEADERBAR=1
+
+export TEXMFHOME="$HOME/.config/texlive"
