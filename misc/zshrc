@@ -5,11 +5,13 @@ antigen use oh-my-zsh
 
 antigen bundle compleat
 antigen bundle common-aliases
+antigen bundle colored-man
 antigen bundle django
 antigen bundle extract
 antigen bundle fasd
 antigen bundle git
 antigen bundle git-extras
+antigen bundle github
 antigen bundle last-working-dir
 antigen bundle pip
 antigen bundle pyenv
@@ -21,7 +23,6 @@ antigen bundle web-search
 antigen bundle unixorn/git-extra-commands
 antigen bundle peterhurford/git-it-on.zsh
 antigen bundle psprint/zsh-navigation-tools
-antigen bundle desyncr/auto-ls
 antigen bundle MichaelAquilina/zsh-you-should-use
 
 antigen bundle $RC/zsh
