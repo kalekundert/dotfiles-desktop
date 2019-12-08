@@ -10,7 +10,7 @@ if [ "$THIS_SHELL" = "zsh" ]; then
     setopt extended_glob
     setopt bare_glob_qual
 
-    fpath=($RC_PATH/tab_completion $fpath)
+    fpath=($RC_DIR/tab_completion $fpath)
 
     # Enable fancy tab completion
     zstyle :compinstall filename '/home/kale/.zshrc'
