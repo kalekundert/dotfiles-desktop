@@ -1,7 +1,7 @@
 # General Utilities {{{1
 # =================
 alias xx="exec zsh"
-alias xrc="source ~/.zshrc"
+alias xrc="echo Restart the shell to reload the configuration."
 alias edal="vim $RC/zsh/aliases.zsh && xrc"
 alias edvar="vim $RC/zsh/variables.zsh && xrc"
 alias edpath="vim $RC/zsh/path.zsh && xrc"
@@ -57,6 +57,8 @@ alias zzz='sudo pm-suspend'
 # This is still a pretty rough implementation.  It's easy to get around (i.e.  
 # by passing any arguments to 'ls') and the '.lsrc' files are hard to write.  I 
 # might have to write a more involved python script to get around these issues.
+
+alias gs='git status'
 
 function ls () {
     if [ $# -eq 1 ] && [ -e '.lsrc' ]; then
