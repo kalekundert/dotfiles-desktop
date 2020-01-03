@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-fork google-chrome hangouts.google.com
+fork google-chrome-stable hangouts.google.com

@@ -12,11 +12,14 @@ pip install                                                          \
      --upgrade pip                                                   \
     bump2version                                                     \
     cookiecutter                                                     \
+    dfply                                                            \
     docopt                                                           \
     docutils                                                         \
+    hypothesis                                                       \
     ipython                                                          \
     jupyter                                                          \
     keyring                                                          \
+    flit                                                             \
     fn                                                               \
     matplotlib                                                       \
     more_itertools                                                   \

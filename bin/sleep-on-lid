@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-# This script tells gnome to put the computer to sleep when the lid closes.  I
-# can't find a convenient way to set this option through a GUI, so I copied
-# this command off of somebody's blog.
-#
-# Do not run this command as root, or it won't work right.
-
-gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action suspend

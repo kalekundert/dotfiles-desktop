@@ -13,6 +13,15 @@ import termios
 
 import threading
 
+# Don't think I ever really got this to work, but the idea is to run a command 
+# while printing out a timestamp regularly.
+#
+# Maybe a better way to do this is:
+#
+# - Run the program and the heartbeat in a background thread.
+# - Send all stdout/stderr to a foreground thread in a queue.
+# - Print out everything that appears in the queue.
+
 class InputThread(threading.Thread):
 
     def __init__(self):

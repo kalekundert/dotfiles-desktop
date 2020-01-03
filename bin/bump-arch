@@ -10,12 +10,12 @@ echo "Installing core packages:"
 sudo pacman -S \
   ack \
   acpi \
-  acpid \
   arandr \
   biber \
   borg \
   calibre \
   clang \
+  ctags \
   cups \
   dos2unix \
   eom \
@@ -105,4 +105,5 @@ yay -S \
   google-chrome \
   skypeforlinux-stable-bin \
   pithos \
+  pulseaudio-ctl \
   snapgene \

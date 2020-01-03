@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-fork google-chrome tv.youtube.com
+$BROWSER tv.youtube.com

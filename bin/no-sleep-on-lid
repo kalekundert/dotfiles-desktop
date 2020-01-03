@@ -6,4 +6,8 @@
 #
 # Do not run this command as root, or it won't work right.
 
-gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action blank
+echo "Press Ctrl-D to resume sleep-on-lid"
+systemd-inhibit \
+  --what=handle-lid-switch \
+  --who=no-sleep-on-lid \
+  cat 

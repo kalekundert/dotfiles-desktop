@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-pulseaudio-ctl "$@"
-volume=$(pulseaudio-ctl full-status | awk '{print $1}')
-volnoti-show $volume
