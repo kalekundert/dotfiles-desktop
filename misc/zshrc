@@ -11,7 +11,7 @@ antigen bundle common-aliases
 antigen bundle colored-man
 antigen bundle django
 antigen bundle extract
-antigen bundle fasd
+#antigen bundle fasd
 antigen bundle git
 antigen bundle git-extras
 antigen bundle github
@@ -27,7 +27,6 @@ antigen bundle unixorn/git-extra-commands
 antigen bundle peterhurford/git-it-on.zsh
 antigen bundle psprint/zsh-navigation-tools
 antigen bundle MichaelAquilina/zsh-you-should-use
-
-antigen theme bira
+antigen bundle agkozak/agkozak-zsh-prompt
 
 antigen apply
