@@ -76,14 +76,16 @@ function ls () {
             --hide="*.nlo"                                                  \
             --hide="*.bbl"                                                  \
             --hide="*.blg"                                                  \
-            --hide="_minted-*"                                               \
+            --hide="_minted-*"                                              \
             --hide="__pycache__"                                            \
             --hide="lost+found"                                             \
             --hide="autom4te.cache"                                         \
             --hide="Makefile.in"                                            \
             --hide="aclocal.m4"                                             \
             --hide="autom4te.cache"                                         \
-            --hide="databases-incognito"                                         \
+            --hide="databases-incognito"                                    \
+            --hide="VideoDecodeStats"                                       \
+            --hide="R"                                                      \
             --hide="*.egg-info"
     fi
 }
