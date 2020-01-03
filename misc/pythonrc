@@ -49,6 +49,7 @@ plt = LazyImporter('matplotlib.pyplot')
 # Note: These two variables almost completely defeat the purpose of the 
 # lazy-importers defined above...
 a = np.arange(10)
+v = lambda *args: np.array(args)
 df = pd.DataFrame([
     dict(a=1, b=1, x=np.random.random()),
     dict(a=2, b=1, x=np.random.random()),
