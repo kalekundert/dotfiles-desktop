@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+bluetoothctl disconnect 0C:C4:13:0B:2A:D9

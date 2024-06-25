@@ -4,30 +4,67 @@
 Query different aspects of nucleotide sequences.
 
 Usage:
-    dna comp [<sequence>]
-    dna revcomp [<sequence>]
-    dna gc [<sequence>]
-    dna len [<sequence>]
-    dna mw [<sequence>] [--ss]
-    dna rand <bp>
+    dna rev [<seq>]
+    dna comp [<seq>]
+    dna rc [<seq>]
+    dna gc [<seq>]
+    dna gcplot [<seq>] [-w <window>]
+    dna tm [<seq>]
+    dna len [<seq>]
+    dna mw [<seq>] [--ss]
+    dna rand <bp> [<seed>]
 
+Options:
+    --ss
+        Indicate that the given sequence is single-stranded.
+
+    -w --window <size>      [default: 20]
+        Indicate how big a window to use when plotting GC%.
 """
 
 import numpy as np
-np.random.seed(1000)
+
+def reverse(sequence):
+    return sequence[::-1]
 
 def complement(sequence):
     complements = str.maketrans('ACTGactg', 'TGACtgac')
     return sequence.translate(complements)
 
 def reverse_complement(sequence):
-    return complement(sequence[::-1])
+    return reverse(complement(sequence))
 
 def gc_content(sequence):
-    return sum(x in 'GC' for x in sequence) / len(sequence)
+    from Bio.SeqUtils import GC
+    return GC(sequence) / 100
+
+def plot_gc_content(sequence, window=20):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from more_itertools import windowed
+
+    gc = [
+            gc_content(''.join(x))
+            for x in windowed(sequence, window)
+    ]
+    i = np.arange(len(gc)) + 1
+
+    try:
+        plt.plot(i, gc)
+        plt.xlabel('Position')
+        plt.ylabel('GC%')
+        plt.ylim(0, 1)
+        plt.xlim(min(i), max(i))
+        plt.show()
+    except KeyboardInterrupt:
+        print()
 
 def melting_temp(sequence):
-    pass
+    from Bio.SeqUtils import MeltingTemp
+    from Bio.Seq import Seq
+    seq = Seq(sequence)
+    tm = MeltingTemp.Tm_NN(seq)
+    return tm
 
 def molecular_weight(sequence, double_stranded=True):
     sequence = sequence.upper()
@@ -42,11 +79,13 @@ def molecular_weight(sequence, double_stranded=True):
     else:
         return (a * 313.2) + (t * 304.2) + (c * 289.2) + (g * 329.2) - 62
 
-def random_sequence(num):
-    return ''.join([
-            np.random.choice(list('atcg'), p=[0.3, 0.3, 0.2, 0.2])
-            for x in range(num)
-    ])
+def random_sequence(n, seed=0):
+    import random; random.seed(seed)
+
+    pop = 'ATCG' * (n // 4)
+    pop += ''.join(random.sample('ATCG', n - len(pop)))
+
+    return ''.join(random.sample(pop, n))
 
 
 if __name__ == '__main__':
@@ -54,23 +93,36 @@ if __name__ == '__main__':
     args = docopt.docopt(__doc__)
 
     if args['rand']:
-        print(random_sequence(int(args['<bp>'])))
+        seq = random_sequence(
+            int(args['<bp>']),
+            int(args['<seed>'] or 0),
+        )
+        print(seq)
         raise SystemExit
 
-    sequence = args['<sequence>']
+    seq = args['<seq>']
 
-    if sequence in (None, '-'):
-        sequence = input()
+    if seq in (None, '-'):
+        seq = input()
 
+    if args['rev']:
+        print(reverse(seq))
     if args['comp']:
-        print(complement(sequence))
-    if args['revcomp']:
-        print(reverse_complement(sequence))
+        print(complement(seq))
+    if args['rc']:
+        print(reverse_complement(seq))
     if args['gc']:
-        print('{:.1f}%'.format(100 * gc_content(sequence)))
+        gc = gc_content(seq)
+        print(f'{100 * gc:.1f}%')
+    if args['gcplot']:
+        plot_gc_content(seq, int(args['--window']))
+    if args['tm']:
+        tm = melting_temp(seq)
+        print(f'{tm:.1f}°C')
     if args['mw']:
-        print('{:.1f} Da'.format(molecular_weight(sequence, not args['--ss'])))
+        mw = molecular_weight(seq, not args['--ss'])
+        print(f'{mw:.1f} Da')
     if args['len']:
-        print(len(sequence))
+        print(len(seq))
 
 

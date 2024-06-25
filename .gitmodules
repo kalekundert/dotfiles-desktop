@@ -1,3 +1,9 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "plugins/agkozak-zsh-prompt"]
+	path = plugins/agkozak-zsh-prompt
+	url = https://github.com/agkozak/agkozak-zsh-prompt.git
+[submodule "openbox"]
+	path = openbox
+	url = git@github.com:kalekundert/openbox_config.git

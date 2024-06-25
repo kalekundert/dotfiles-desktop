@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
 
-# This script tells gnome to put the computer to sleep when the lid closes.  I
-# can't find a convenient way to set this option through a GUI, so I copied
-# this command off of somebody's blog.
-#
-# Do not run this command as root, or it won't work right.
+if [ "$1" = '-h' ]; then 
+  echo "Prevent the computer from going to sleep until this program is terminated."
+  exit 0
+fi
 
 echo "Press Ctrl-D to resume sleep-on-lid"
 systemd-inhibit \

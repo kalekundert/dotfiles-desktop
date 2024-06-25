@@ -19,6 +19,7 @@ pip install                                                          \
     ipython                                                          \
     jupyter                                                          \
     keyring                                                          \
+    lazyasd                                                          \
     flit                                                             \
     fn                                                               \
     matplotlib                                                       \
@@ -52,6 +53,5 @@ pip install                                                          \
     ${(z)$(editable ~/research/software/projects/exmemo)}            \
     ${(z)$(editable ~/research/software/projects/klab)}              \
     ${(z)$(editable ~/research/software/projects/rosetta_dev_tools)} \
-    ${(z)$(editable ~/research/software/projects/wet_copy)}          \
     ${(z)$(editable ~/kxgames/libraries/vecrec)}                     \
     ${(z)$(editable ~/kxgames/libraries/glooey)}                     \

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+chromium --app=http://localhost:6006
+

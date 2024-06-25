@@ -1,0 +1,8 @@
+default_context:
+    full_name: "Kale Kundert"
+    email: "kale@thekunderts.net"
+    github_username: "kalekundert"
+
+abbreviations:
+    kxg: https://github.com/kxgames/cookiecutter-kxg.git
+    py: /home/kale/hacking/projects/cookiecutter_python
