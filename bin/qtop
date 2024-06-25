@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-ssh chef 'source /etc/profile && ~/.local.32/bin/qtop'
-

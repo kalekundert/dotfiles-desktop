@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-PATH=.:$PATH
-SGE_TASK_ID=TEST "$@"

@@ -8,72 +8,37 @@ fi
 
 echo "Installing core packages:"
 sudo pacman -S \
-  ack \
-  acpi \
+  alacritty \
   arandr \
-  biber \
   borg \
-  calibre \
-  clang \
-  ctags \
-  cups \
-  dos2unix \
+  base-devel \
   eom \
   fcron \
   firefox \
-  foomatic-db \
-  foomatic-db-engine \
-  foomatic-db-gutenprint-ppds \
-  foomatic-db-nonfree \
-  foomatic-db-nonfree-ppds \
-  foomatic-db-ppds \
-  gdb \
   gimp \
   gmrun \
   gnome-keyring \
-  gnumeric \
   gnupg \
-  gutenprint \
   htop \
   inkscape \
   libreoffice-extension-texmaths \
   libreoffice-fresh \
-  llvm7 \
-  lyx \
-  mercurial \
-  mlocate \
-  noto-fonts \
   openbox \
-  openmp \
-  paps \
   pavucontrol \
-  pinentry \
   pulseaudio \
   pulseaudio-alsa \
   pyenv \
   qutebrowser \
   rsync \
-  sakura \
-  scribus \
   scrot \
-  sshfs \
   sudo \
-  texlive-most \
+  the_silver_searcher \
   thunderbird \
-  thunderbird-extension-enigmail \
   ttf-croscore \
   ttf-dejavu \
-  ttf-fira-code \
-  ttf-fira-mono \
-  ttf-fira-sans \
-  ttf-font-awesome \
   ttf-liberation \
   ttf-roboto \
-  valgrind \
-  vlc \
   xdotool \
-  xf86-video-intel \
-  xorg \
   xsel \
   zathura \
   zathura-cb \
@@ -82,10 +47,8 @@ sudo pacman -S \
   zathura-ps \
   zsh \
 
-sudo systemctl enable org.cups.cupsd
-
 echo "Installing AUR packages:"
-AUR_DIR=~/hacking/third_party
+AUR_DIR=~/hacking/pkgbuild
 mkdir -p $AUR_DIR
 
 if ! type -p yay >/dev/null; then
@@ -99,11 +62,5 @@ if ! type -p yay >/dev/null; then
 fi
 
 yay -S \
-  pam-ssh \
-  pam-gnupg-git \
-  neovim-gtk-git \
-  google-chrome \
-  skypeforlinux-stable-bin \
   pithos \
   pulseaudio-ctl \
-  snapgene \

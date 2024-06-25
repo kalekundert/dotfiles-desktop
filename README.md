@@ -1,4 +1,4 @@
-This repository contains my personal configuration files.  
+This repository contains my personal configuration files for programs that run in a desktop environment.
 
 Installation:
 ```sh
