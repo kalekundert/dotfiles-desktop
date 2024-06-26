@@ -25,5 +25,6 @@ ln -sf $SRC/openbox/themes/minimalist ~/.local/share/themes
 ln -sf $SRC/qutebrowser ~/.config
 ln -sf $SRC/user-dirs.dirs ~/.config/
 ln -sf $SRC/user-dirs.locale ~/.config/
+ln -sf $SRC/Xcompose ~/.Xcompose
 ln -sf $SRC/xinitrc ~/.xinitrc
 ln -sf $SRC/zathura ~/.config
