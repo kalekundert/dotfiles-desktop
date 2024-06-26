@@ -1,0 +1,26 @@
+# The text editor to use for various commands, e.g. `exmemo expt edit`.  You 
+# can also specify this using the $EDITOR environment variable.
+editor = 'gvim'
+
+# The terminal to use for various commands, e.g. `exmemo expt open`.  You 
+# can also specify this using the $TERMINAL environment variable.
+terminal = 'sakura'
+
+# The web browser to use for various commands, e.g. `exmemo note browse`.  You 
+# can also specify this using the $BROWSER environment variable.
+browser = 'qutebrowser'
+browser_new_window_flag = '--target window'
+
+# The PDF viewer to use for various commands, most notably displaying PDF 
+# protocols.  You can also specify this using the $PDF environment variable.
+pdf = 'zathura'
+
+# The cookiecutter (https://github.com/audreyr/cookiecutter) template to use 
+# when creating a new project (i.e. `exmemo project init`).
+cookiecutter_url = ''
+
+# The path to more directories containing protocols.  This directory will be 
+# considered when printing or fossilizing protocols.
+shared_protocols = [
+    '~/research/protocols',
+]

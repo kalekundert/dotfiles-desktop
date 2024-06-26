@@ -1,0 +1,55 @@
+use = 'dbp'
+tag_pattern = '([pflorsb]|sr|sz)(\d+)'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'plasmid'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/plasmids.xlsx'
+sequence = '/home/kale/research/projects/201904_bind_dna/reagents/sequences/{tag}.dna'
+tag_template = 'p${i+2}'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'nucleic_acid'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/fragments.xlsx'
+sequence = '/home/kale/research/projects/201904_bind_dna/reagents/sequences/{tag}.dna'
+tag_template = 'f${i+2}'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'nucleic_acid'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/libraries.xlsx'
+sequence = '/home/kale/research/projects/201904_bind_dna/reagents/sequences/{tag}.dna'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'oligo'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/oligos.xlsx'
+sequence = '/home/kale/research/projects/201904_bind_dna/reagents/sequences/{tag}.dna'
+tag_template = 'o${i+2}'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'oligo'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/oligos.xlsx'
+worksheet = 'SR primers'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'protein'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/proteins.xlsx'
+sequence = '/home/kale/research/projects/201904_bind_dna/reagents/sequences/{tag}.prot'
+tag_template = 'r${i+2}'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'strain'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/strains.xlsx'
+tag_template = 's${i+2}'
+
+[[database.dbp]]
+format = 'excel'
+reagent = 'strain'
+path = '/home/kale/research/projects/201904_bind_dna/reagents/strains.xlsx'
+worksheet = 'rpoZ Strains'
+

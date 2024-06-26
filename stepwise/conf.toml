@@ -1,0 +1,683 @@
+[search]
+path = [
+  '/home/kale/research/protocols',
+]
+
+
+[molbio.pcr.presets.opool]
+inherit = 'q5'
+# This protocol is based on the recommendations made by Twist:
+# https://tinyurl.com/3sce5397
+#
+# That protocol calls for KAPA polymerase, but for now I'm using Q5 because 
+# that what I have.  I also don't expect my library to be very susceptible to 
+# amplification bias, so the choice of polymerase shouldn't be too important.
+# The Twist protocol doesn't alter the standard KAPA protocol, so I won't alter 
+# the standard Q5 protocol either.  Note however that Q5 calls for 67% more of 
+# the primers than KAPA does.  Neither polymerase requires a specific quantity 
+# of template, so I used the amount recommended by Twist.
+
+reagents = '''
+Reagent            Stock       Volume  MM?
+==============  ========  ===========  ===
+water                     to 25.00 µL  yes
+template DNA    20 ng/µL      0.50 µL
+forward primer     10 µM      1.25 µL
+reverse primer     10 µM      1.25 µL
+Q5 master mix         2x     12.50 µL  yes
+'''
+num_cycles = 6
+
+# Hard-coded because oligo-pools can't be longer than 300 bp.
+extend_time_s = 15
+
+[molbio.kld.presets.'neb/dilute']
+reaction = '''
+Reagent                  Stock        Volume  Master Mix
+===================  =========   ===========  ==========
+water                            to 10.00 μL         yes
+KLD reaction buffer         2x       5.00 μL         yes
+KLD enzyme mix             10x       1.00 μL         yes
+DNA                   50 ng/μL       4.00 μL
+'''
+incubation_time_min = 5
+
+
+[molbio.transform]
+default_preset = 'mix-n-go'
+
+[molbio.transform.presets.mix-n-go]
+brief = "Transform Zymo Mix & Go competent cells"
+footnotes = ['https://tinyurl.com/2cesd2hv']
+
+strain = 'MACH1'
+plasmid_quantity = '1 µL'
+cell_volume_uL = 25
+rest_time_min = 5
+skip_heat_shock = true
+recovery_media = "SOC"
+recovery_media_volume_uL = 100
+recovery_temp_C = 37
+recovery_time_min = 60
+plate_volume_uL.no_recover = 25
+plate_volume_uL.recover = 125
+outgrowth_temp_C = 37
+outgrowth_time_h = 16
+
+[molbio.transform.presets.'mach1/homemade']
+# Transformation protocol for competent cells I prepared myself.
+inherit = 'mach1'
+brief = "Transform home-made CaCl₂ competent cells"
+
+plasmid_quantity = '5 µL'
+cell_volume_uL = 100
+recovery_media_volume_uL = 100
+plate_dilution = 1
+plate_volume_uL = 200
+
+[molbio.transform.presets.'mach1/10uL']
+# The official MACH1 protocol, with some time/money-saving changes.
+inherit = 'mach1'
+brief = "Standard cloning transformation"
+
+plasmid_quantity = '2 µL'
+cell_volume_uL = 10
+recovery_media_volume_uL = 90
+plate_dilution = 1
+
+[molbio.transform.presets.'s3/homemade']
+# Transformation protocol for competent cells I prepared myself.
+inherit = 'mach1'
+brief = "CaCl₂-competent s3 cells"
+
+strain = 's3'
+plasmid_quantity = '2 µL'
+cell_volume_uL = 100
+recovery_media_volume_uL = 1000
+concentrate = true
+conc_spin_speed_g = 5000
+conc_spin_time_min = 5
+conc_volume_uL = 200
+plate_dilution = 1
+plate_volume_uL = 200
+
+
+[molbio.sequence.presets.sc101]
+inherit = 'quintara/sanger'
+
+
+[molbio.grow.presets.'b1h/auxotrophy']
+overnight.media = 'LB'
+overnight.volume_mL = 3
+
+media = 'NM'
+fresh = true
+volume_mL = 5
+inoculate_ratio = 100
+temp_C = 37
+time_h = 16
+shaking_rpm = 225
+
+[molbio.grow.presets.'b1h/qpcr']
+overnight.media = 'LB'
+media = 'LB + 10 µM IPTG'
+volume_mL = 1
+inoculate_ratio = 100
+temp_C = 37
+shaking_rpm = 225
+time_h = 4
+
+
+[molbio.gel.presets.'emsa/zif']
+brief = "Native PAGE; Zif268 EMSA"
+inherit = 'native'
+gel_percent = '4–16'
+sample_mix = """
+Reagent             Stock      Volume  MM?
+==============  =========  ==========  ===
+water                      to 6.00 µL  yes
+BTSGV                  4x     1.50 µL  yes
+sample                        1.25 µL
+"""
+stain = 'laser red'
+
+[molbio.gel.presets.'sds/ivtt/flag']
+# Gel chemistry:
+# - For trying to visualize the FLAG peptide, Bolt and tricine gels seem 
+#   comparable, see expt 117.
+# - I'm going with tricine for now, because the bands are a bit sharper.
+inherit = 'tricine/ivtt/flag'
+
+[molbio.gel.presets.'sds/ivtt/nb']
+# Tricine vs/ bis-tris/MES:
+# - Expt #147: tRNA and Nb-GFP bands may be superimposed with bis-tris/MES gels
+#   - Although there may also just be no expression.
+# - Expt #117: 10-20% tricine gels seem like the best bet to resolve these 
+#   bands.
+inherit = 'tricine/ivtt/nb'
+
+
+[molbio.gel.presets.'bolt/max']
+brief = "Bolt SDS PAGE (Invitrogen) without diluting the sample"
+inherit = 'bolt/mes'
+sample_mix = """
+Reagent                 Stock    Volume  MM?
+======================  =====  ========  ===
+Bolt LDS sample buffer     4x   3.85 µL  yes
+Bolt reducing agent       10x   1.54 µL  yes
+sample                         10.00 µL
+"""
+load_volume_uL = 15.39
+
+[molbio.gel.presets.'bolt/pcv2']
+brief = "Bolt SDS PAGE (Invitrogen) for PCV2 coupling reactions"
+inherit = 'bolt/max'
+run_time_min = 60
+stain = 'gelgreen_sypro_orange'
+
+[molbio.gel.presets.'bolt/o194']
+brief = "Bolt SDS PAGE (Invitrogen) with o194"
+inherit = 'bolt/mes'
+sample_mix = """\
+Reagent                  Stock   Volume      MM?
+======================  ======  ===========  ===
+water                           to 10.00 µL  yes
+Bolt LDS sample buffer      4x      2.50 µL  yes
+Bolt reducing agent        10x      1.00 µL  yes
+o194                    100 µM      0.07 µL  yes
+sample                    7 nM      2.50 µL
+"""
+
+[molbio.gel.presets.'bolt/ivtt/dna']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT with DNA templates"
+inherit = 'bolt/mes'
+# Sample volume:
+# - The PURExpress product page calls for loading 2.5 µL sample/lane:
+#   https://www.neb.com/products/e6800-purexpress-invitro-protein-synthesis-kit#Product%20Information
+# - The PUREfrex manual calls for loading 1.0 µL sample/lane:
+#   https://tinyurl.com/ml26pu09
+# - I prefer to err on the side of too much sample, so I'll go with the NEB 
+#   recommendation by default.
+sample_mix = """\
+Reagent                                        Stock   Volume      MM?
+============================================  ======  ===========  ===
+water                                                 to 10.00 µL  yes
+Bolt LDS sample buffer                            4x      2.50 µL  yes
+Bolt reducing agent                              10x      1.00 µL  yes
+sample                                                    2.50 µL
+"""
+# Assume FluoroTect was used.
+stain = 'laser blue'
+
+[molbio.gel.presets.'bolt/ivtt/rna']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT with RNA templates"
+inherit = 'bolt/mes'
+# The default sample concentration is the optimized concentration of mWasabi 
+# mRNA to use in PURExpress reactions.
+sample_mix = """\
+Reagent                                        Stock   Volume      MM?
+============================================  ======  ===========  ===
+water                                                 to 10.00 µL  yes
+Bolt LDS sample buffer                            4x      2.50 µL  yes
+Bolt reducing agent                              10x      1.00 µL  yes
+sample                                        160 nM      2.50 µL
+"""
+stain = 'laser blue red'
+
+[molbio.gel.presets.'bolt/ivtt/blue']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT (only image green channel)"
+inherit = 'bolt/ivtt/rna'
+stain = 'laser blue'
+ladder = false
+
+[molbio.gel.presets.'bolt/ivtt/red']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT (only image red channel)"
+inherit = 'bolt/ivtt/rna'
+stain = 'laser red'
+
+[molbio.gel.presets.'bolt/ivtt/flag']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT with FLAG peptide"
+inherit = 'bolt/ivtt/rna'
+
+[molbio.gel.presets.'bolt/ivtt/pcv-zif']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT with PCV2-Zif268"
+inherit = 'bolt/mes'
+ladder = 'PageRuler unstained protein ladder'
+ladder_volume_uL = 5
+stain = 'stain sypro-orange'
+sample_mix = """\
+Reagent                                        Stock   Volume      MM?
+============================================  ======  ===========  ===
+water                                                 to 10.00 µL  yes
+Bolt LDS sample buffer                            4x      2.50 µL  yes
+Bolt reducing agent                              10x      1.00 µL  yes
+sample                                                    2.50 µL
+"""
+
+[molbio.gel.presets.'bolt/ivtt/nb-gfp']
+brief = "Bolt SDS PAGE (Invitrogen); for IVTT with Nb-GFP [Doshi2014]"
+inherit = 'bolt/mes'
+ladder = 'PageRuler unstained protein ladder'
+ladder_volume_uL = 5
+
+# Sample volume:
+# - I chose 5 µL arbitrarily.
+# - I can adjust if the gels don't look great.
+sample_mix = """\
+Reagent                                        Stock   Volume      MM?
+============================================  ======  ===========  ===
+water                                                 to 10.00 µL  yes
+Bolt LDS sample buffer                            4x      2.50 µL  yes
+Bolt reducing agent                              10x      1.00 µL  yes
+sample                                                    5.00 µL
+"""
+
+# - Blue laser to image FluoroTect
+# - If I order Cy5 linker, I can add the red channel.
+stain = 'laser blue'
+
+[molbio.gel.presets.'tricine/ivtt']
+inherit = 'novex/tricine'
+
+# Sample volume:
+# - The gels on the PURExpress product page were run with 2.5 µL of sample.
+#
+# Sample concentration:
+# - Left unspecified because the concentration of translated protein from an 
+#   IVTT reaction is not known a priori.
+sample_mix = """\
+Reagent                                            Stock      Volume  MM?
+=============================================  =========  ==========  ===
+water                                                     to 10.0 µL  yes
+TGSB                                                  2x      5.0 µL  yes
+NuPAGE reducing agent                                10x      1.0 µL  yes
+sample                                                        2.5 µL
+"""
+
+# Incubation temperature:
+# - From a FluoroTect manual:
+#   - "The FluoroTect™ tRNA  fluorophore is sensitive to extreme heating. If 
+#     heating to denature the proteins, do not exceed 70°C for more  than 2–3 
+#     minutes."
+#   - https://www.promega.com/-/media/files/resources/protocols/technical-bulletins/0/fluorotect-greenlys-in-vitro-translation-labeling-system-protocol.pdf
+# 
+# - The default incubation temperature for tricine gels is 85°C, so this is a 
+#   bit lower.
+#
+# - Not all IVTT reactions use FluoroTect GreenLys, but I still think it's a 
+#   good default (unless it turns out to really not work well).
+incubate_temp_C = 70
+
+stain = 'laser blue red'
+
+[molbio.gel.presets.'tricine/ivtt/flag']
+inherit = 'tricine/ivtt'
+
+# See expt 117.
+gel_percent = "10-20"
+
+[molbio.gel.presets.'tricine/ivtt/nb']
+inherit = 'tricine/ivtt'
+
+# - See expt 117.
+# - Nb-GFP is 15 kDa.
+gel_percent = "10-20"
+
+[molbio.gel.presets.'tricine/ivtt/zif']
+inherit = 'tricine/ivtt'
+
+# - Zif268 is 11 kDa
+# - This MW is resolved very nicely on both 10-20% and 16% tricine gels, and 
+#   not resolved well by Bolt gels [expt #102].
+# - I chose 10-20% as the default just because it has a wider range in general, 
+#   and who knows if/when that will be useful.
+gel_percent = "10-20"
+
+[molbio.gel.presets.'urea/ladder']
+inherit = 'urea'
+ladder = 'low range ssRNA ladder (NEB N0364S)'
+ladder_volume_uL = 1
+
+[molbio.gel.presets.'urea/mrna/zif']
+brief = "TBE/urea PAGE for Zif168 mRNA"
+inherit = 'urea/ladder'
+
+# Sample volume:
+# - Base protocol calls for 200 ng/band.
+# - For 1 µM Zif268 mRNA (f11, len=388, MW=126045.5), 200 ng is 1.60 µL
+sample_mix = """
+Reagent              Stock    Volume  MM?
+===============  =========  ========  ===
+water                       to 10 µL  yes
+FESV                    2x      5 µL  yes
+sample             1000 nM    1.6 µL
+"""
+
+[molbio.gel.presets.'urea/mrna/flag']
+brief = "TBE/urea PAGE for FLAG mRNA"
+inherit = 'urea/ladder'
+
+# Sample conc:
+# - Base protocol calls for 200 ng/band.
+# - For 1 µM FLAG mRNA (f111, len=123, MW=39892.9), 200 ng is 5.01 µL.
+sample_mix = """
+Reagent                    Stock    Volume  MM?
+========================  ======  ========  ===
+nuclease free water               to 10 µL  yes
+FESV                          2x      5 µL  yes
+sample                      1 µM      5 µL
+"""
+
+[molbio.gel.presets.'urea/click']
+inherit = 'urea/ladder'
+
+# Sample stock conc:
+# - recommended load: 200 ng/band
+# - representative MW (o236): 17285 g/mol
+# - 200 ng/µL = 11.6 µM
+# - round to 10 µM
+sample_mix = """
+Reagent              Stock    Volume  MM?
+===============  =========  ========  ===
+water                       to 10 µL  yes
+FESV                    2x      5 µL  yes
+sample               10 µM      1 µL
+"""
+sample_conc = 100
+
+# Run time:
+# - The usual 40 min runtime runs the ligation/RT oligo off the bottom.
+# - See expt #57.
+run_time_min = 30
+stain = 'stain gelgreen -i "laser blue red"'
+
+[molbio.gel.presets.'urea/ligate/zif']
+brief = "TBE/urea PAGE with o194"
+inherit = 'urea/ladder'
+
+# Sample volume:
+# - See 'urea/mrna/zif'
+# - Adjust to 2 µM, because that's the default concentration of mRNA in the 
+#   ligation reaction.
+#
+# o194 volume:
+# - 100x final RNA concentration [expt #50]
+sample_mix = """
+Reagent                     Stock    Volume  MM?
+========================  =======  ========  ===
+nuclease free water                to 10 µL  yes
+FESV                           2x      5 µL  yes
+o194                       100 µM    1.6 µL  yes
+sample                    2000 nM    0.8 µL
+"""
+stain = "gelgreen_cy5"
+
+[molbio.gel.presets.'urea/ligate/doshi2014']
+brief = "TBE/urea PAGE: [Doshi2014] ligation"
+inherit = 'urea/ladder'
+
+# Gel parameters for checking ligation when following the [Doshi2014] mRNA 
+# display protocol.
+#
+# Sample conc:
+# - [Doshi2014] calls for 5 µg mRNA in a 60 µL reaction.
+# - Nb mRNA used by [Doshi2014] has MW=143365.24
+# - That works out to: 581 nM (final conc)
+#
+# Sample volume:
+# - See 'urea/ligate/zif' (Zif268 and NB GFP are similar in length).
+# - Adjust to 500 nM as per above calcuation.
+#
+# Anti-linker:
+# - I haven't included the anti-linker oligo because I don't have it yet.  But 
+#   it might be something to look into.
+sample_mix = """
+Reagent                     Stock    Volume  MM?
+========================  =======  ========  ===
+nuclease free water                to 10 µL  yes
+FESV                           2x      5 µL  yes
+sample                     500 nM    3.2 µL
+"""
+
+# Stain:
+# - Currently linker is not fluorescent. 
+# - I'll change this if I order a linker with Cy5 or IRDye 700.
+stain = "stain gelgreen"
+
+[molbio.gel.presets.'urea/ivtt']
+brief = "TBE/urea PAGE"
+inherit = 'urea'
+sample_mix = """
+Reagent              Stock    Volume  MM?
+===============  =========  ========  ===
+water                       to 10 µL  yes
+FESV                    2x      5 µL  yes
+sample                        2.5 µL
+"""
+stain = "laser blue red"
+
+[molbio.gel.presets.'natbr']
+brief = "Native PAGE; image with blue and red lasers"
+inherit = 'native'
+stain = 'laser blue red'
+
+[molbio.gel.presets.'agarose/purify/1']
+brief = "1.0% agarose/TBE (for purification)"
+inherit = 'agarose/1'
+mix_volume_uL = 60
+load_volume_uL = 20
+ladder = '1 µg 1 kb+ DNA ladder'  # For 5 mm (i.e. normal width) lane.
+stain = 'transilluminator blue'
+
+[molbio.gel.presets.'agarose/purify/1kb']
+brief = "gel purify ≈1kb fragments"
+
+# For 6 cm gel, 10 cm between electrodes
+
+sample_mix = """
+Reagent       Stock  Volume
+===========  ======  ======
+sample                40 µL
+loading dye      6x    8 µL
+"""
+ladder = "50 ng/µL 1kb+ DNA ladder"
+ladder_volume_uL = 10
+gel_type = "agarose"
+gel_percent = 1
+gel_buffer = "0.5x tris-acetate"
+load_volume_uL = 48
+run_volts = 100
+
+# See expt #204, 11/16: I ran a gel for 60 min, and the 900 bp band ended up 
+# right at the bottom (with the 1 kb band right above it).  I assume that 
+# reducing the time by 10m will move the 1 kb band ≈1 cm from the bottom.
+run_time_min = 50
+stain = "stain dna -I"
+
+[molbio.gel.presets.'agarose/purify/2kb']
+inherit = 'agarose/purify/1kb'
+brief = "gel purify ≈2kb fragments"
+run_time_min = 80
+
+[molbio.gel.presets.'agarose/purify/4kb']
+inherit = 'agarose/purify/2kb'
+brief = "gel purify ≈4kb fragments"
+run_time_min = 90
+
+[molbio.gel.presets.'page/tbe/f206']
+inherit = 'tbe/purify'
+ladder = "TriDye ultra low range ladder"
+ladder_volume_uL = 2
+mix_volume_uL = 12.5
+run_time_min = 50
+
+
+[molbio.stain.presets.dna]
+inherit = 'gelgreen'
+
+[molbio.stain.presets.rna]
+inherit = 'dna'
+
+[molbio.stain.presets.gelgreen]
+inherit = 'gelgreen'
+imaging_protocol = 'laser green'
+stain_buffer = '1x GelGreen, 1x running buffer'
+
+
+[molbio.ivtt.presets.'purex/gfp']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'purexpress'
+template_stock_nM = 1000
+template_conc_nM = 160
+
+[molbio.ivtt.presets.'purex/lys']
+inherit = 'purexpress'
+additives = [
+  'FluoroTect GreenLys     ;         ; 0.5 µL ; +',  # copied from 'frex2/lys'
+]
+volume_uL = 10
+
+[molbio.ivtt.presets.'purex/doshi2014']
+brief = "PURExpress for mRNA display [Doshi2014]"
+
+# This reaction has half the RNase inhibitor as [Doshi2014], and also include 
+# FluoroTect GreenLys.  So not exactly right, but close.
+inherit = 'purex/lys'
+
+# Template stock:
+# - Start with 5 µg f145 (MW=143365.24): 34.9 pmol
+# - Assume 50% yield from ligation: 17.44 pmol
+# - Assume 90% yield from bead purification: 15.69 pmol
+# - In final volume of 6.5 µL: 2.414 µM
+# - If I measure/optimize RNA concentration, I can give a better number.
+template_stock_nM = 2500
+
+# Template conc:
+# - [Doshi2014] calls for 6.5 µL mRNA in a 25 µL reaction.
+# - 6.5 µL × 2500 nM / 25 µL = 650 nM
+# - This can't quite be reached here, because of the FluoroTect, but these are 
+#   all estimates anyways, so it doesn't really matter.
+template_conc_nM = 650
+
+incubation_time = '90 min'
+
+[molbio.ivtt.presets.'frex1']
+inherit = 'purefrex1'
+
+additives = [
+  'RNase inhibitor, murine ; 40 U/µL ; 0.2 µL ; +',  # copied from 'frex2'
+]
+volume_uL = 10
+
+[molbio.ivtt.presets.'frex1/lys']
+inherit = 'frex1'
+
+additives = [
+  'RNase inhibitor, murine ; 40 U/µL ; 0.2 µL ; +',  # copied from 'frex2/lys'
+  'FluoroTect GreenLys     ;         ; 0.5 µL ; +',  # copied from 'frex2/lys'
+]
+volume_uL = 10
+
+[molbio.ivtt.presets.'frex1/flag']
+inherit = 'frex1/lys'
+template_conc_nM = 1000  # expt 99
+
+[molbio.ivtt.presets.'frex1/zif']
+inherit = 'frex1/lys'
+template_conc_nM = 1000  # expt 99
+
+[molbio.ivtt.presets.'frex1/gfp']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'frex1/lys'
+
+# I want to get this up to 2000 nM.
+template_stock_nM = 1000
+
+# See optimization in expt #99.  1000 nM would be better, but 500 nM still 
+# gives reasonable yield (>73%) and is more reasonable with the stock 
+# concentrations I can get.
+template_conc_nM = 500
+
+[molbio.ivtt.presets.'frex2']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'purefrex2'
+
+# RNase inhibitor:
+# - The PURExpress manual recommends 0.8 U/µL (20 U per 25 µL reaction).
+# - The product page for the inhibitor itself recommends 1 U/µL.  
+# - I've been using 0.8 U/µL for PURExpress, because it's the recommendation I 
+#   encountered first and it seems to work fine.
+# - I'm going to go with 0.8 U/µL here too:
+#   - PUREfrex is supposed to have less RNase activity than PURExpress anyways.
+#   - These reactions tend to need a lot of mRNA, so I'd like to leave as much 
+#     room as possible in the reaction.
+# - 10 µL reaction × 0.8 U/µL / 40 U/µL stock = 0.2 µL
+#
+# Adding RNase inhibitor does help prevent mRNA degradation, at least with 
+# PUREfrex 2.0.  See expt #67.
+additives = [
+  'RNase inhibitor, murine;40 U/µL;0.2 µL;+',
+]
+volume_uL = 10
+
+[molbio.ivtt.presets.'frex2/lys']
+inherit = 'frex2'
+
+# FluoroTect:
+# - The PUREfrex 2.0 manual has a whole section on using the FluoroTect 
+#   reagent.  It recommends 0.5 µL per 10 µL reaction (20x dilution).
+# - The FluoroTect manual recommends 1 µL per 50 µL reaction (50x dilution).
+# - I'm going to go with the PUREfrex manual, because it's more specific to my 
+#   exact experiment.
+#
+# - Use `sw fluorotect_rnase_digest` to get protocol for digesting FluoroTect 
+#   with RNase.
+additives = [
+  'RNase inhibitor, murine ; 40 U/µL ; 0.2 µL ; +',  # copied from 'frex2'
+  'FluoroTect GreenLys     ;         ; 0.5 µL ; +',
+]
+volume_uL = 10
+
+[molbio.ivtt.presets.'frex2/gfp']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'frex2/lys'
+template_stock_nM = 1000
+template_conc_nM = 500  # expt 99: >94%
+
+[molbio.ivtt.presets.'nebex/gfp']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'nebexpress'
+template_stock_nM = 2000
+template_conc_nM = 400  # expt 98: >86%
+
+[molbio.ivtt.presets.'s30/gfp']
+# Need a way to specify separate concentrations for DNA/RNA.
+inherit = 'promega/s30/linear'
+template_stock_nM = 1000
+template_conc_nM = 200  # expt 100: 99%
+
+
+[molbio.dnase.presets.'neb/dpni']
+reaction = """
+Reagent                  Stock    Volume  Flags
+===================  =========  ========  =====
+nuclease-free water             to 10 µL
+rCutSmart buffer           10x      1 µL
+DpnI                   20 U/µL      1 µL  dnase
+RNA                  500 ng/µL      2 µL
+"""
+incubation.time_m = 15
+incubation.temp_C = 37
+
+
+[molbio.reverse_transcribe]
+default_preset = 'thermo/superscript-iv'
+
+[molbio.reverse_transcribe.presets.'thermo/superscript-iv/dpni']
+inherit = 'thermo/superscript-iv'
+dnase_preset = 'neb/dpni'
+
+
+[molbio.spin_cleanup]
+default_preset = 'zymo/dna-clean-conc/5'
+
