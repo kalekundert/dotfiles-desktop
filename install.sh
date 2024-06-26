@@ -5,6 +5,7 @@ git submodule update --recursive
 
 mkdir -p ~/.config
 mkdir -p ~/.config/inkscape
+mkdir -p ~/.local/share/themes
 
 # Load the desktop profile before the base profile, so that the first $PATH
 # entries come fron the base dotfiles.
@@ -20,6 +21,7 @@ ln -sf $SRC/gmrunrc ~/.gmrunrc
 ln -sf $SRC/inkspace/palettes ~/.config/inkscape
 ln -sf $SRC/matplotlib ~/.config
 ln -sf $SRC/openbox ~/.config
+ln -sf $SRC/openbox/themes/minimalist ~/.local/share/themes
 ln -sf $SRC/qutebrowser ~/.config
 ln -sf $SRC/user-dirs.dirs ~/.config/
 ln -sf $SRC/user-dirs.locale ~/.config/
