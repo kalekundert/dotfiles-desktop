@@ -17,6 +17,7 @@ ln -sf $SRC/zshrc.d/desktop.zsh ~/.zshrc.d/60-desktop.zsh
 ln -sf $SRC/zshrc.d/research.zsh ~/.zshrc.d/60-research.zsh
 
 ln -sf $SRC/alacritty ~/.config
+ln -sf $SRC/fontconfig ~/.config
 ln -sf $SRC/gmrunrc ~/.gmrunrc
 ln -sf $SRC/inkspace/palettes ~/.config/inkscape
 ln -sf $SRC/matplotlib ~/.config
