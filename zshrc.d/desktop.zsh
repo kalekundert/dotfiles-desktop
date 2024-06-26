@@ -2,8 +2,11 @@
 export fpath=(~/.dotfiles-desktop/zcompdef.d $fpath)
 
 # Config files {{{1
-alias edav='nvim ~/.config/avendesora/accounts.gpg && chmod 600 ~/.config/avendesora/accounts.gpg'
-alias edsw='vim ~/.config/stepwise/conf.toml'
+
+alias edrc-desktop='$EDITOR ~/.dotfiles-desktop/zshrc.d/desktop.zsh'
+alias edrc-science='$EDITOR ~/.dotfiles-desktop/zshrc.d/science.zsh'
+alias edav='$EDITOR ~/.config/avendesora/accounts.gpg && chmod 600 ~/.config/avendesora/accounts.gpg'
+alias edsw='$EDITOR ~/.config/stepwise/conf.toml'
 
 # Home directories {{{1
 hash -d nb=~/research/projects/201904_bind_dna/notebook/inpaint_protein_atom_clouds/predict_relative_orientation
