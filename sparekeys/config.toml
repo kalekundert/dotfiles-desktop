@@ -1,0 +1,23 @@
+[plugins]
+archive = [
+  'ssh',
+  'gpg',
+  'emborg',
+  'avendesora',
+]
+publish = [
+  'mount',
+  'scp',
+]
+auth = [
+  'avendesora',
+]
+
+[publish.scp]
+host = ['guybrush', 'thekunderts']
+
+[publish.mount]
+drive = '~/usb'
+
+[auth.avendesora]
+account = 'login'
