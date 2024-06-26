@@ -1,0 +1,53 @@
+# Remote directory for backup sets
+repository = 'fm1595@fm1595.rsync.net:borg/'
+remote_path = 'borg1'
+
+# Naming pattern used for the archives
+#
+# May contain {<name>} where name is any of host_name, user_name,
+# prog_name config_name, or any of the user specified settings.
+# Double up the braces to specify parameters that should be interpreted
+# by borg rather than by emborg.
+archive = '{host_name}-{{now}}'
+
+# Absolute path to directory to be backed up
+src_dirs = [
+  '~/hacking',
+  '~/kxgames',
+  '~/personal',
+  '~/research',
+]
+
+# List of glob strings of files or directories to skip
+excludes = [
+  '~/personal/tv',
+  '~/hacking/third_party',
+  '~/research/software/rosetta',
+  '~/research/software/third_party',
+  '~/research/projects/rescue_ksi_d38e/first_try/first_try/guybrush',
+  '~/research/projects/201503_ksi_rescue_d38e/first_try/guybrush',
+  '~/research/databases',
+  '**/lightning_logs',
+  '**/*.ckpt',
+  '**/cache',
+  '**/.cache',
+  '**/source/build',
+  '**/source/cmake',
+  '**/.hg',
+  '**/.git',
+  '**/.pyc',
+  '**/__pycache__',
+  '**/.*.sw*',
+  '**/*.sif',
+  '**/*.pkl',
+]
+
+one_file_system = False
+exclude_caches = True
+
+# commands to be run before and after backups (run from working directory)
+run_before_backup = []
+run_after_backup = []
+
+# if set, this file or these files must exist or backups will quit with an error
+#must_exist = '~/doc/thesis'

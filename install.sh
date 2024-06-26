@@ -4,6 +4,7 @@ git submodule init
 git submodule update --recursive
 
 mkdir -p ~/.config
+mkdir -p ~/.config/emborg
 mkdir -p ~/.config/inkscape
 mkdir -p ~/.local/share/themes
 
@@ -17,6 +18,8 @@ ln -sf $SRC/zshrc.d/desktop.zsh ~/.zshrc.d/60-desktop.zsh
 ln -sf $SRC/zshrc.d/research.zsh ~/.zshrc.d/60-research.zsh
 
 ln -sf $SRC/alacritty ~/.config
+ln -sf $SRC/emborg/home ~/.config/emborg
+ln -sf $SRC/emborg/settings ~/.config/emborg
 ln -sf $SRC/fontconfig ~/.config
 ln -sf $SRC/gmrunrc ~/.gmrunrc
 ln -sf $SRC/inkspace/palettes ~/.config/inkscape

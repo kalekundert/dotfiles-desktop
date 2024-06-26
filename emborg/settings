@@ -1,0 +1,21 @@
+default_configuration = 'home'        # default backup configuration
+configurations = 'home'               # available backup configurations
+encryption = 'repokey'
+avendesora_account = 'borg'           # Avendesora account name (holds passphrase for encryption key)
+passphrase = None                     # passphrase to use (if specified, Avendesora is not used)
+                                      # if both avendesora_account and passphrase are empty, encryption is not used
+notify = "kale@thekunderts.net"       # email address to notify when things go wrong
+notifier = 'notify-send -u normal {prog_name} "{msg}"'
+                                      # notification program
+bw_limit = 2000                       # bandwidth limit in kbps
+compression = 'lz4'                   # compression algorithm to use
+umask = '77'                          # umask to use when creating the archives
+prune_after_create = True
+compact_after_delete = True
+check_after_create = False
+lock_wait = 5                         # how long to wait for the lock
+keep_hourly = 48                      # number of hourly archives to keep
+keep_daily = 7                        # number of daily archives to keep
+keep_weekly = 4                       # number of weekly archives to keep
+keep_monthly = 12                     # number of monthly archives to keep
+keep_yearly = 5                       # number of yearly archives to keep
