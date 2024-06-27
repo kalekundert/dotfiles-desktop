@@ -27,13 +27,14 @@ ln -sf $SRC/freezerbox ~/.config
 ln -sf $SRC/gmrunrc ~/.gmrunrc
 ln -sf $SRC/inkspace/palettes ~/.config/inkscape
 ln -sf $SRC/matplotlib ~/.config
+ln -sf $SRC/mimeapps.list ~/.config
 ln -sf $SRC/openbox ~/.config
 ln -sf $SRC/openbox/themes/minimalist ~/.local/share/themes
 ln -sf $SRC/qutebrowser ~/.config
 ln -sf $SRC/sparekeys/config.toml ~/.config/sparekeys
 ln -sf $SRC/stepwise ~/.config
-ln -sf $SRC/user-dirs.dirs ~/.config/
-ln -sf $SRC/user-dirs.locale ~/.config/
+ln -sf $SRC/user-dirs.dirs ~/.config
+ln -sf $SRC/user-dirs.locale ~/.config
 ln -sf $SRC/Xcompose ~/.Xcompose
 ln -sf $SRC/xinitrc ~/.xinitrc
 ln -sf $SRC/zathura ~/.config
