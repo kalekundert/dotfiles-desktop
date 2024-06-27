@@ -13,6 +13,7 @@ sudo pacman -S \
   borg \
   base-devel \
   eom \
+  dunst \
   fcron \
   firefox \
   gimp \
@@ -64,3 +65,5 @@ fi
 yay -S \
   pithos \
   pulseaudio-ctl \
+  slack-desktop \
+  zotero-bin \
