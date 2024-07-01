@@ -267,7 +267,7 @@ alias reboot='sudo reboot'
 alias shutdown='sudo shutdown now'
 alias updatedb='sudo updatedb'
 alias powertop='sudo powertop'
-alias zzz='sudo pm-suspend'
+alias zzz='systemctl suspend'
 
 # For compiling C extensions
 alias pipno='pip install --no-deps --no-build-isolation --no-cache-dir'
