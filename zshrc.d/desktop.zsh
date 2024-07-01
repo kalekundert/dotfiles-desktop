@@ -4,7 +4,7 @@ export fpath=(~/.dotfiles-desktop/zcompdef.d $fpath)
 # Config files {{{1
 
 alias edrc-desktop='$EDITOR ~/.dotfiles-desktop/zshrc.d/desktop.zsh'
-alias edrc-science='$EDITOR ~/.dotfiles-desktop/zshrc.d/science.zsh'
+alias edrc-research='$EDITOR ~/.dotfiles-desktop/zshrc.d/research.zsh'
 alias edav='$EDITOR ~/.config/avendesora/accounts.gpg && chmod 600 ~/.config/avendesora/accounts.gpg'
 alias edsw='$EDITOR ~/.config/stepwise/conf.toml'
 
