@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+
+import os, sys
+
+for pdb_id in sys.argv[1:]:
+    pdb_id = pdb_id.lower()
+    print(f'{os.environ["PDB_MMCIF"]}/{pdb_id[1:3]}/{pdb_id}.cif.gz')
