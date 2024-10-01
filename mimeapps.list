@@ -1,53 +1,18 @@
-[Added Associations]
-application/pdf=masterpdfeditor4.desktop;gimp.desktop;inkscape.desktop;evince.desktop;zathura.desktop;
-application/force-download=pymol.desktop;
-application/x-research-info-systems=gvim.desktop;
-image/svg+xml=inkscape.desktop;
-application/vnd.dna=snapgene.desktop;
-application/x-xpinstall=mozilla-thunderbird.desktop;
-x-scheme-handler/http=firefox.desktop;qutebrowser.desktop;
-x-scheme-handler/https=firefox.desktop;qutebrowser.desktop;
-x-scheme-handler/ftp=firefox.desktop;qutebrowser.desktop;
-x-scheme-handler/chrome=firefox.desktop;qutebrowser.desktop;
-text/html=firefox.desktop;zathura-djvu.desktop;qutebrowser.desktop;
-application/x-extension-htm=firefox.desktop;qutebrowser.desktop;
-application/x-extension-html=firefox.desktop;qutebrowser.desktop;
-application/x-extension-shtml=firefox.desktop;qutebrowser.desktop;
-application/xhtml+xml=firefox.desktop;qutebrowser.desktop;
-application/x-extension-xhtml=firefox.desktop;qutebrowser.desktop;
-application/x-extension-xht=firefox.desktop;qutebrowser.desktop;
-text/markdown=gvim.desktop;
-text/tab-separated-values=gnumeric.desktop;
-application/x-yaml=gvim.desktop;nvim.desktop;
-image/x-eps=zathura-ps.desktop;gvim.desktop;nvim.desktop;
-chemical/x-pdb=pymol.desktop;
-chemical/x-cif=pymol.desktop;
-application/ms-tnef=gvim.desktop;nvim.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
-application/biosequence.fasta=gvim.desktop;
-text/x-perl-script=gvim.desktop;
-text/x-r-source=gvim.desktop;
+# The contents of this file can also be set using the `xdg-settings` command:
+#
+#     $ xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+#
+# Note that applications must be specified (both in this file and via 
+# `xdg-settings`) using their full desktop file names.  For a while, I was 
+# having trouble because I assumed that the qutebrowser file was named 
+# `qutebrowser.desktop`.  Specifying the wrong name in this file basically just 
+# causes this file to be ignored.  Specifying the wrong name to `xdg-settings` 
+# does trigger an error code, but no error message.
 
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop
-x-scheme-handler/http=qutebrowser.desktop
-x-scheme-handler/https=qutebrowser.desktop
-x-scheme-handler/ftp=qutebrowser.desktop
-x-scheme-handler/chrome=qutebrowser.desktop
-text/html=qutebrowser.desktop
-application/x-extension-htm=qutebrowser.desktop
-application/x-extension-html=qutebrowser.desktop
-application/x-extension-shtml=qutebrowser.desktop
-application/xhtml+xml=qutebrowser.desktop
-application/x-extension-xhtml=qutebrowser.desktop
-application/x-extension-xht=qutebrowser.desktop
-application/vnd.ms-excel=gnumeric.desktop
-application/vnd.stardivision.calc=gnumeric.desktop
-application/vnd.sun.xml.calc=gnumeric.desktop
-application/vnd.sun.xml.calc.template=gnumeric.desktop
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=gnumeric.desktop
-application/vnd.openxmlformats-officedocument.spreadsheetml.template=gnumeric.desktop
-application/vnd.oasis.opendocument.spreadsheet=gnumeric.desktop
-application/vnd.oasis.opendocument.spreadsheet-template=gnumeric.desktop
-x-scheme-handler/msteams=teams.desktop
-x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
