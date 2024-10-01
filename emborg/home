@@ -27,6 +27,7 @@ excludes = [
   '~/research/projects/rescue_ksi_d38e/first_try/first_try/guybrush',
   '~/research/projects/201503_ksi_rescue_d38e/first_try/guybrush',
   '~/research/databases',
+  '~/.local/share',
   '**/lightning_logs',
   '**/*.ckpt',
   '**/cache',
