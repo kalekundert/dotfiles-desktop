@@ -42,6 +42,7 @@ hash -d mmvox=~/research/software/projects/macromol_voxelize
 hash -d mmg=~/research/software/projects/macromol_gym
 hash -d mmgd=~/research/software/projects/macromol_gym/make_db
 hash -d mmgp=~/research/software/projects/macromol_gym/pretrain
+hash -d mmgu=~/research/software/projects/macromol_gym/unsupervised
 hash -d ty=~/hacking/projects/torchyield
 hash -d hot=~/research/software/projects/hms_o2_trainer
 hash -d wellmap=~/research/software/projects/wellmap
@@ -236,7 +237,9 @@ export PDF=zathura
 # gvim {{{1
 export NVIM_GTK_NO_HEADERBAR=1
 
-alias v=gvim
+if [ -z "$SSH_TTY" ]; then
+  alias v=gvim
+fi
 
 # gnome-keyring {{{1
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
