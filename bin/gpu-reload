@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# This script unloads and then reloads the NVIDIA driver.
+#
+# For some reason, this driver doesn't function properly after the system has 
+# been suspended and resumed.  However, restarting the driver works around the 
+# issue, and is less disruptive than restarting the whole computer.
+#
+# References:
+# https://discuss.pytorch.org/t/userwarning-cuda-initialization-cuda-unknown-error-this-may-be-due-to-an-incorrectly-set-up-environment-e-g-changing-env-variable-cuda-visible-devices-after-program-start-setting-the-available-devices-to-be-zero/129335/4
+# https://discuss.pytorch.org/t/cuda-fails-to-reinitialize-after-system-suspend/158108/3
+
+sudo rmmod nvidia_uvm
+sudo modprobe nvidia_uvm
